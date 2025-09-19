@@ -19,6 +19,20 @@ function closeBanner() {
   if (topBanner) {
     topBanner.style.display = 'none';
     document.body.style.paddingTop = '80px'; // Adjust for removed banner
+    // Update navbar position
+
+    var navbar = document.querySelector('.navbar');
+
+    if (navbar) {
+      navbar.style.top = '0';
+    } // Update hero margin
+
+
+    var hero = document.querySelector('.hero');
+
+    if (hero) {
+      hero.style.marginTop = '80px';
+    }
   }
 } // Toggle mobile menu
 

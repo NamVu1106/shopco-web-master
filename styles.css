@@ -11,7 +11,7 @@ html {
 
 body {
     font-family: 'Inter', sans-serif;
-    padding-top: 100px;
+    padding-top: 0;
     line-height: 1.6;
     color: #000;
     overflow-x: hidden;
@@ -20,13 +20,13 @@ body {
 /* Responsive Base */
 @media (max-width: 1024px) {
     body {
-        padding-top: 90px;
+        padding-top: 0;
     }
 }
 
 @media (max-width: 768px) {
     body {
-        padding-top: 80px;
+        padding-top: 0;
     }
 }
 
@@ -216,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section Responsive */
 @media (max-width: 1024px) {
     .hero {
-        padding-top: 16px;
+        margin-top: 90px;
     }
     
     .hero-container {
@@ -272,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .hero {
-        padding-top: 12px;
+        margin-top: 80px;
     }
     
     .hero-container {
@@ -452,7 +452,6 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
 }
 
 .nav-container {
@@ -655,8 +654,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero {
     background: #F2F0F1;
-    padding-top: 20px;
+    padding-top: 0;
     overflow: hidden;
+    margin-top: 100px;
 }
 
 .hero-container {
