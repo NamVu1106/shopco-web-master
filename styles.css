@@ -1309,8 +1309,8 @@ h1, h2, h3, h4, h5, h6 {
     
     .footer-content {
         display: grid !important;
-        grid-template-columns: 1fr 1fr !important;
-        gap: 20px;
+        grid-template-columns: 1fr 1fr 1fr !important;
+        gap: 16px;
         margin-bottom: 16px;
     }
     
@@ -1403,8 +1403,8 @@ h1, h2, h3, h4, h5, h6 {
     
     .footer-content { 
         display: grid !important; 
-        grid-template-columns: 1fr !important; 
-        gap: 20px; 
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 16px; 
         text-align: left; 
     }
     
