@@ -1,5 +1,13 @@
 "use strict";
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -254,7 +262,97 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () {
       scrollToSection(sectionId);
     }, 500); // Wait for all content to load
-  }
+  } // Hero slider (simple fade/translate) using background images
+
+
+  (function initHeroSlider() {
+    var images = ['shopco-web-master/src/assets/images/heroimg.png', 'shopco-web-master/src/assets/images/phong trang.jpg', 'shopco-web-master/src/assets/images/phong trang 2.jpg'];
+    var hero = document.getElementById('heroImage');
+    if (!hero) return;
+    var prev = document.getElementById('heroPrev');
+    var next = document.getElementById('heroNext');
+    var dotsBox = document.getElementById('heroDots');
+    var idx = 0,
+        timer;
+
+    function render() {
+      hero.style.transition = 'opacity .5s ease, transform .5s ease';
+      hero.style.opacity = '0';
+      hero.style.transform = 'scale(0.98)';
+      setTimeout(function () {
+        hero.style.backgroundImage = "url('".concat(images[idx], "')");
+        hero.style.opacity = '1';
+        hero.style.transform = 'none';
+        if (dotsBox) _toConsumableArray(dotsBox.children).forEach(function (d, i) {
+          return d.classList.toggle('active', i === idx);
+        });
+      }, 200);
+    }
+
+    function go(n) {
+      idx = (idx + n + images.length) % images.length;
+      render();
+      restart();
+    }
+
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(function () {
+        return go(1);
+      }, 5000);
+    }
+
+    if (dotsBox) {
+      dotsBox.innerHTML = images.map(function (_, i) {
+        return "<button aria-label=\"Go to slide ".concat(i + 1, "\"></button>");
+      }).join('');
+
+      dotsBox.onclick = function (e) {
+        var i = _toConsumableArray(dotsBox.children).indexOf(e.target);
+
+        if (i > -1) {
+          idx = i;
+          render();
+          restart();
+        }
+      };
+    }
+
+    if (prev) prev.onclick = function () {
+      return go(-1);
+    };
+    if (next) next.onclick = function () {
+      return go(1);
+    };
+    render();
+    restart();
+  })(); // Reveal on scroll using IntersectionObserver
+
+
+  (function initReveal() {
+    var els = document.querySelectorAll('[data-reveal]');
+
+    if (!('IntersectionObserver' in window) || els.length === 0) {
+      els.forEach(function (el) {
+        return el.classList.add('is-visible');
+      });
+      return;
+    }
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.15
+    });
+    els.forEach(function (el) {
+      return io.observe(el);
+    });
+  })();
 }); // Load New Arrivals section
 
 function loadNewArrivals() {

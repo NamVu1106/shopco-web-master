@@ -51,7 +51,7 @@
             </div>
 
             <div class="nav-menu" id="navMenu">
-                <div class="logo desktop-logo">
+                <div class="logo desktop-logo"> 
                     <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
                 </div>
                 <ul class="nav-links">
@@ -89,12 +89,12 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="hero">
+        <section class="hero" data-reveal>
             <div class="hero-container">
                 <div class="hero-content">
                     <div class="hero-text">
                         <h2 class="hero-title">FIND CLOTHES THAT MATCHES YOUR STYLE</h2>
-                        <p>Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
+                        <p class="hero-sub">Browse through our diverse range of meticulously crafted garments, designed to bring out your individuality and cater to your sense of style.</p>
                         <button class="hero-btn">Shop Now</button>
                         <div class="hero-stats">
                             <div class="stat">
@@ -111,10 +111,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="hero-image">
+                    <div class="hero-image" id="heroImage">
                         <!-- Hero image will be set via CSS -->
                         <div class="star-icon star1">✦</div>
                         <div class="star-icon star2">✦</div>
+                        <button class="hero-nav hero-prev" id="heroPrev" aria-label="Previous">‹</button>
+                        <button class="hero-nav hero-next" id="heroNext" aria-label="Next">›</button>
+                        <div class="hero-dots" id="heroDots"></div>
                     </div>
                 </div>
             </div>
@@ -140,11 +143,11 @@
 
 
         <!-- Placeholder for other sections -->
-        <div id="new-arrivals"></div>
-        <div id="top-selling"></div>
-        <div id="dressStyle"></div>
+        <div id="new-arrivals" data-reveal></div>
+        <div id="top-selling" data-reveal></div>
+        <div id="dressStyle" data-reveal></div>
 
-        <section class="newsletter">
+        <section class="newsletter" data-reveal>
             <div class="container">
                 <div class="newsletter-card">
                     <h3 class="newsletter-title">STAY UPTO DATE ABOUT OUR LATEST OFFERS</h3>

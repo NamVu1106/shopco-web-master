@@ -202,6 +202,56 @@ document.addEventListener('DOMContentLoaded', function() {
             scrollToSection(sectionId);
         }, 500); // Wait for all content to load
     }
+    // Hero slider (simple fade/translate) using background images
+    (function initHeroSlider(){
+        const images = [
+          'shopco-web-master/src/assets/images/heroimg.png',
+          'shopco-web-master/src/assets/images/phong trang.jpg',
+          'shopco-web-master/src/assets/images/phong trang 2.jpg'
+        ];
+        const hero = document.getElementById('heroImage');
+        if(!hero) return;
+        const prev = document.getElementById('heroPrev');
+        const next = document.getElementById('heroNext');
+        const dotsBox = document.getElementById('heroDots');
+        let idx = 0, timer;
+        function render(){
+          hero.style.transition = 'opacity .5s ease, transform .5s ease';
+          hero.style.opacity = '0'; hero.style.transform = 'scale(0.98)';
+          setTimeout(()=>{
+            hero.style.backgroundImage = `url('${images[idx]}')`;
+            hero.style.opacity = '1'; hero.style.transform = 'none';
+            if(dotsBox) [...dotsBox.children].forEach((d,i)=>d.classList.toggle('active', i===idx));
+          }, 200);
+        }
+        function go(n){ idx = (idx + n + images.length) % images.length; render(); restart(); }
+        function restart(){ clearInterval(timer); timer = setInterval(()=>go(1), 5000); }
+        if(dotsBox){
+          dotsBox.innerHTML = images.map((_,i)=>`<button aria-label="Go to slide ${i+1}"></button>`).join('');
+          dotsBox.onclick = (e)=>{ const i=[...dotsBox.children].indexOf(e.target); if(i>-1){ idx=i; render(); restart(); } };
+        }
+        if(prev) prev.onclick = ()=> go(-1);
+        if(next) next.onclick = ()=> go(1);
+        render(); restart();
+    })();
+
+    // Reveal on scroll using IntersectionObserver
+    (function initReveal(){
+        const els = document.querySelectorAll('[data-reveal]');
+        if(!('IntersectionObserver' in window) || els.length===0){
+          els.forEach(el=>el.classList.add('is-visible'));
+          return;
+        }
+        const io = new IntersectionObserver((entries)=>{
+          entries.forEach(entry=>{
+            if(entry.isIntersecting){
+              entry.target.classList.add('is-visible');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.15 });
+        els.forEach(el=> io.observe(el));
+    })();
 });
 
 // Load New Arrivals section
