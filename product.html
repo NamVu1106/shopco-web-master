@@ -47,8 +47,130 @@
     .pagination .page { border:1px solid rgba(0,0,0,0.15); padding:8px 12px; border-radius:8px; cursor:pointer; }
     .pagination .active { background:#000; color:#fff; border-color:#000; }
 
-    @media (max-width: 992px){ .grid{ grid-template-columns:repeat(3, 1fr);} }
-    @media (max-width: 768px){ .products-wrap{ grid-template-columns:1fr; } .grid{ grid-template-columns:repeat(2, 1fr);} }
+    /* Product Page Responsive */
+    @media (max-width: 1024px) {
+        .products-wrap {
+            grid-template-columns: 240px 1fr;
+            gap: 20px;
+            margin: 20px 0 32px;
+        }
+        
+        .filters {
+            padding: 12px;
+        }
+        
+        .filters h4 {
+            font-size: 14px;
+        }
+        
+        .filter-item {
+            padding: 8px 6px;
+            font-size: 14px;
+        }
+        
+        .grid {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .card img {
+            height: 240px;
+        }
+        
+        .card h5 {
+            font-size: 15px;
+        }
+        
+        .price strong {
+            font-size: 15px;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .page-hero {
+            padding: 12px 0;
+        }
+        
+        .breadcrumb {
+            font-size: 13px;
+        }
+        
+        .products-wrap {
+            grid-template-columns: 1fr;
+            gap: 16px;
+            margin: 16px 0 24px;
+        }
+        
+        .filters {
+            position: static;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .filters h4 {
+            font-size: 16px;
+        }
+        
+        .filter-item {
+            padding: 10px 8px;
+            font-size: 15px;
+        }
+        
+        .grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        
+        .card img {
+            height: 200px;
+        }
+        
+        .card .body {
+            padding: 12px;
+        }
+        
+        .card h5 {
+            font-size: 14px;
+        }
+        
+        .rating {
+            font-size: 13px;
+        }
+        
+        .price strong {
+            font-size: 14px;
+        }
+        
+        .list-head {
+            flex-direction: column;
+            gap: 12px;
+            align-items: stretch;
+        }
+        
+        .sort {
+            width: 100%;
+        }
+    }
+    
+    @media (max-width: 480px) {
+        .grid {
+            grid-template-columns: 1fr;
+            gap: 12px;
+        }
+        
+        .card img {
+            height: 180px;
+        }
+        
+        .filters {
+            padding: 12px;
+        }
+        
+        .filter-item {
+            padding: 8px 6px;
+            font-size: 14px;
+        }
+    }
     @media (max-width: 520px){ .grid{ grid-template-columns:1fr;} }
   </style>
 </head>

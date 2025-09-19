@@ -23,6 +23,58 @@
     .sum-total{font-weight:800;font-size:18px}
     .btn-dark{width:100%;background:#000;color:#fff;border:none;border-radius:999px;padding:12px 16px;margin-top:12px;cursor:pointer}
     .empty{color:rgba(0,0,0,.6);text-align:center;padding:40px 0}
+    
+    /* Cart Page Responsive */
+    @media(max-width:1024px){
+      .cart-wrap{padding:0 20px;margin:20px auto 32px}
+      .cart-grid{grid-template-columns:1fr 320px;gap:20px}
+      .cart-item{gap:12px;padding:10px}
+      .cart-item img{width:50px;height:50px}
+      .ci-title{font-size:14px}
+      .ci-meta{font-size:11px}
+      .qty button{width:24px;height:24px;font-size:12px}
+      .qty span{width:24px;font-size:12px}
+      .summary{padding:14px}
+      .summary h3{font-size:16px;margin-bottom:10px}
+      .sum-row{font-size:14px;margin:6px 0}
+      .sum-total{font-size:16px}
+      .btn-dark{padding:10px 14px;font-size:14px}
+    }
+    
+    @media(max-width:768px){
+      .cart-wrap{padding:0 16px;margin:16px auto 24px}
+      .cart-grid{grid-template-columns:1fr;gap:16px}
+      .cart-item{flex-direction:column;align-items:stretch;gap:8px;padding:12px}
+      .cart-item img{width:80px;height:80px;align-self:center}
+      .ci-title{font-size:15px;text-align:center}
+      .ci-meta{font-size:12px;text-align:center}
+      .ci-right{margin-left:0;justify-content:center;gap:12px}
+      .qty button{width:28px;height:28px;font-size:14px}
+      .qty span{width:28px;font-size:14px}
+      .ci-remove{font-size:12px;padding:4px 8px}
+      .summary{padding:16px}
+      .summary h3{font-size:18px;margin-bottom:12px;text-align:center}
+      .sum-row{font-size:15px;margin:8px 0}
+      .sum-total{font-size:18px}
+      .btn-dark{padding:12px 16px;font-size:15px}
+      .empty{padding:32px 0;font-size:16px}
+    }
+    
+    @media(max-width:480px){
+      .cart-wrap{padding:0 12px;margin:12px auto 20px}
+      .cart-item{padding:10px}
+      .cart-item img{width:60px;height:60px}
+      .ci-title{font-size:14px}
+      .ci-meta{font-size:11px}
+      .ci-right{gap:8px}
+      .qty button{width:24px;height:24px;font-size:12px}
+      .qty span{width:24px;font-size:12px}
+      .summary{padding:12px}
+      .summary h3{font-size:16px}
+      .sum-row{font-size:13px;margin:6px 0}
+      .sum-total{font-size:16px}
+      .btn-dark{padding:10px 14px;font-size:14px}
+    }
   </style>
 </head>
 <body>
