@@ -133,26 +133,29 @@ h1, h2, h3, h4, h5, h6 {
     
     .nav-container {
         padding: 0 16px;
-        grid-template-columns: 1fr;
-        gap: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .mobile-menu-toggle {
         display: flex;
-        position: relative;
-        z-index: 1002;
+        align-items: center;
+        gap: 12px;
     }
     
     .hamburger {
-        font-size: 28px;
-        padding: 12px;
-        min-width: 44px;
-        min-height: 44px;
+        font-size: 24px;
+        padding: 8px;
+        min-width: 40px;
+        min-height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
+        background: none;
+        border: none;
     }
     
     .nav-menu {
@@ -179,10 +182,16 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .logo h1 {
-        font-size: 24px;
+        font-size: 18px;
+        margin: 0;
     }
     
     .nav-links {
+        display: none;
+    }
+    
+    .nav-menu.active .nav-links {
+        display: flex;
         flex-direction: column;
         gap: 16px;
         width: 100%;
@@ -195,6 +204,11 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .nav-right {
+        display: none;
+    }
+    
+    .nav-menu.active .nav-right {
+        display: flex;
         flex-direction: column;
         gap: 12px;
         width: 100%;
