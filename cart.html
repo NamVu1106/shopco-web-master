@@ -44,13 +44,13 @@
     @media(max-width:768px){
       .cart-wrap{padding:0 16px;margin:16px auto 24px}
       .cart-grid{grid-template-columns:1fr;gap:16px}
-      .cart-item{flex-direction:column;align-items:stretch;gap:8px;padding:12px}
-      .cart-item img{width:80px;height:80px;align-self:center}
-      .ci-title{font-size:15px;text-align:center}
-      .ci-meta{font-size:12px;text-align:center}
-      .ci-right{margin-left:0;justify-content:center;gap:12px}
-      .qty button{width:28px;height:28px;font-size:14px}
-      .qty span{width:28px;font-size:14px}
+      .cart-item{flex-direction:row;align-items:center;gap:12px;padding:12px}
+      .cart-item img{width:60px;height:60px;flex-shrink:0}
+      .ci-title{font-size:14px;text-align:left}
+      .ci-meta{font-size:11px;text-align:left}
+      .ci-right{margin-left:auto;justify-content:flex-end;gap:8px}
+      .qty button{width:24px;height:24px;font-size:12px}
+      .qty span{width:24px;font-size:12px}
       .ci-remove{font-size:12px;padding:4px 8px}
       .summary{padding:16px}
       .summary h3{font-size:18px;margin-bottom:12px;text-align:center}
@@ -62,13 +62,14 @@
     
     @media(max-width:480px){
       .cart-wrap{padding:0 12px;margin:12px auto 20px}
-      .cart-item{padding:10px}
-      .cart-item img{width:60px;height:60px}
-      .ci-title{font-size:14px}
-      .ci-meta{font-size:11px}
-      .ci-right{gap:8px}
-      .qty button{width:24px;height:24px;font-size:12px}
-      .qty span{width:24px;font-size:12px}
+      .cart-item{padding:10px;flex-direction:row;align-items:center;gap:10px}
+      .cart-item img{width:50px;height:50px;flex-shrink:0}
+      .ci-title{font-size:13px;text-align:left}
+      .ci-meta{font-size:10px;text-align:left}
+      .ci-right{margin-left:auto;justify-content:flex-end;gap:6px}
+      .qty button{width:22px;height:22px;font-size:11px}
+      .qty span{width:22px;font-size:11px}
+      .ci-remove{font-size:10px;padding:3px 6px}
       .summary{padding:12px}
       .summary h3{font-size:16px}
       .sum-row{font-size:13px;margin:6px 0}
