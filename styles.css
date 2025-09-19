@@ -26,7 +26,13 @@ body {
 
 @media (max-width: 768px) {
     body {
-        padding-top: 60px;
+        padding-top: 80px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding-top: 70px;
     }
 }
 
