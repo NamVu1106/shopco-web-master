@@ -35,65 +35,6 @@ h1, h2, h3, h4, h5, h6 {
     font-family: 'Inter', sans-serif;
 }
 
-/* Top Banner */
-.top-banner {
-    background-color: #000;
-    color: #fff;
-    padding: 10px 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1001;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: center;
-}
-
-.top-banner-text {
-    justify-self: center;
-    text-align: center;
-    font-size: 14px;
-}
-
-.top-banner a {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.close-btn {
-    cursor: pointer;
-    font-size: 20px;
-    padding: 4px 10px;
-    line-height: 1;
-}
-
-/* Top Banner Responsive */
-@media (max-width: 1024px) {
-    .top-banner {
-        padding: 8px 16px;
-    }
-    
-    .top-banner-text {
-        font-size: 13px;
-    }
-}
-
-@media (max-width: 768px) {
-    .top-banner {
-        padding: 6px 12px;
-    }
-    
-    .top-banner-text {
-        font-size: 12px;
-        line-height: 1.4;
-    }
-    
-    .close-btn {
-        font-size: 18px;
-        padding: 2px 8px;
-    }
-}
 
 /* Navigation Responsive */
 @media (max-width: 1024px) {
@@ -464,7 +405,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #F2F0F1;
     padding: 18px 0;
     position: fixed;
-    top: 44px;
+    top: 0;
     left: 0;
     right: 0;
     z-index: 1000;

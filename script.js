@@ -2,29 +2,8 @@
 let cartCount = 0;
 
 // DOM Elements
-const topBanner = document.getElementById('topBanner');
 const navMenu = document.getElementById('navMenu');
 const cartCountElement = document.getElementById('cartCount');
-
-// Close top banner
-function closeBanner() {
-    if (topBanner) {
-        topBanner.style.display = 'none';
-        document.body.style.paddingTop = '80px';
-        
-        // Update navbar position
-        const navbar = document.querySelector('.navbar');
-        if (navbar) {
-            navbar.style.top = '0';
-        }
-        
-        // Update hero padding
-        const hero = document.querySelector('.hero');
-        if (hero) {
-            hero.style.paddingTop = '80px';
-        }
-    }
-}
 
 // Toggle mobile menu
 function toggleMobileMenu() {

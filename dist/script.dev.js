@@ -11,30 +11,8 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 // Global variables
 var cartCount = 0; // DOM Elements
 
-var topBanner = document.getElementById('topBanner');
 var navMenu = document.getElementById('navMenu');
-var cartCountElement = document.getElementById('cartCount'); // Close top banner
-
-function closeBanner() {
-  if (topBanner) {
-    topBanner.style.display = 'none';
-    document.body.style.paddingTop = '80px'; // Update navbar position
-
-    var navbar = document.querySelector('.navbar');
-
-    if (navbar) {
-      navbar.style.top = '0';
-    } // Update hero padding
-
-
-    var hero = document.querySelector('.hero');
-
-    if (hero) {
-      hero.style.paddingTop = '80px';
-    }
-  }
-} // Toggle mobile menu
-
+var cartCountElement = document.getElementById('cartCount'); // Toggle mobile menu
 
 function toggleMobileMenu() {
   if (navMenu) {
