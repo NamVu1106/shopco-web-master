@@ -189,31 +189,12 @@ function scrollToSection(sectionId) {
 
 function handleSearch(query) {
   console.log('Searching for:', query); // Implement search logic here
-} // Handle navbar scroll effect
-
-
-function handleNavbarScroll() {
-  var navbar = document.querySelector('.navbar');
-  var hero = document.querySelector('.hero');
-
-  if (navbar && hero) {
-    var heroBottom = hero.offsetTop + hero.offsetHeight;
-    var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-    if (scrollTop > heroBottom - 100) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
-  }
 } // Initialize when DOM is loaded
 
 
 document.addEventListener('DOMContentLoaded', function () {
   // Sync badge from localStorage
-  updateCartCount(); // Add scroll listener for navbar effect
-
-  window.addEventListener('scroll', handleNavbarScroll); // Add search functionality
+  updateCartCount(); // Add search functionality
 
   var searchInput = document.querySelector('.search-input');
 

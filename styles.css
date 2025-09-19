@@ -99,10 +99,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 1024px) {
     .navbar {
         padding: 16px 0;
-        background-color: transparent;
-    }
-    
-    .navbar.scrolled {
         background-color: #F2F0F1;
     }
     
@@ -132,10 +128,6 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .navbar {
         padding: 12px 0;
-        background-color: transparent;
-    }
-    
-    .navbar.scrolled {
         background-color: #F2F0F1;
     }
     
@@ -455,18 +447,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation */
 .navbar {
-    background-color: transparent;
+    background-color: #F2F0F1;
     padding: 18px 0;
     position: fixed;
     top: 44px;
     left: 0;
     right: 0;
     z-index: 1000;
-    transition: background-color 0.3s ease;
-}
-
-.navbar.scrolled {
-    background-color: #F2F0F1;
 }
 
 .nav-container {

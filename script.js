@@ -130,30 +130,11 @@ function handleSearch(query) {
     // Implement search logic here
 }
 
-// Handle navbar scroll effect
-function handleNavbarScroll() {
-    const navbar = document.querySelector('.navbar');
-    const hero = document.querySelector('.hero');
-    
-    if (navbar && hero) {
-        const heroBottom = hero.offsetTop + hero.offsetHeight;
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (scrollTop > heroBottom - 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }
-}
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Sync badge from localStorage
     updateCartCount();
-    
-    // Add scroll listener for navbar effect
-    window.addEventListener('scroll', handleNavbarScroll);
     
     // Add search functionality
     const searchInput = document.querySelector('.search-input');
