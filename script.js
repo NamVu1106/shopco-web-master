@@ -365,124 +365,196 @@ function loadDressStyle() {
 
 // Load Footer section
 function loadFooter() {
-    const footerHTML = `
-        <footer class="footer">
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h2>SHOP.CO</h2>
-                        <p>We have clothes that suits your style and which you're proud to wear. From women to men.</p>
-                        <div class="social-icons" role="group" aria-label="Social links">
-                            <a class="icon" href="#" aria-label="Twitter">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M22 5.92c-.77.34-1.6.57-2.47.68.89-.53 1.57-1.37 1.89-2.37-.83.49-1.75.84-2.73 1.03A4.13 4.13 0 0 0 12.1 8.1c0 .32.03.62.1.92-3.43-.17-6.47-1.82-8.5-4.34-.36.63-.56 1.36-.56 2.13 0 1.47.75 2.76 1.89 3.52-.7-.02-1.36-.22-1.94-.54v.05c0 2.05 1.5 3.77 3.49 4.16-.36.1-.75.15-1.14.15-.28 0-.55-.03-.82-.08.55 1.72 2.15 2.97 4.05 3A8.3 8.3 0 0 1 2 19.54a11.72 11.72 0 0 0 6.29 1.85c7.55 0 11.68-6.33 11.68-11.82 0-.18 0-.36-.01-.53.8-.6 1.5-1.34 2.04-2.18Z" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <a class="icon" href="#" aria-label="Facebook">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.25-1.5 1.55-1.5h1.7V4.1A23 23 0 0 0 14 4c-2.38 0-4 1.45-4 4.1V11H7v3h3v8h3.5Z" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <a class="icon" href="#" aria-label="Instagram">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
-                                    <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.6"/>
-                                    <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
-                                </svg>
-                            </a>
-                            <a class="icon" href="#" aria-label="GitHub">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.1 3.29 9.42 7.86 10.95.58.1.8-.25.8-.57v-2.02c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.04 1.78 2.73 1.26 3.4.96.1-.75.41-1.25.74-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.19-3.07-.12-.3-.52-1.5.11-3.14 0 0 .98-.32 3.2 1.21.93-.26 1.91-.39 2.89-.39.98 0 1.96.13 2.89.39 2.22-1.53 3.19-1.21 3.19-1.21.64 1.64.24 2.84.12 3.14.74.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.35-5.25 5.64.42.36.8 1.06.8 2.14v3.17c0 .32.21.69.81.57C20.21 21.41 23.5 17.1 23.5 12 23.5 5.73 18.27.5 12 .5Z" fill="currentColor"/>
-                                </svg>
-                            </a>
+    // Check if we're on mobile (screen width <= 768px)
+    const isMobile = window.innerWidth <= 768;
+    
+    let footerHTML;
+    
+    if (isMobile) {
+        // Compact footer for mobile
+        footerHTML = `
+            <footer class="footer mobile-footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h2>SHOP.CO</h2>
+                            <p>We have clothes that suits your style and which you're proud to wear. From women to men.</p>
+                            <div class="social-icons" role="group" aria-label="Social links">
+                                <a class="icon" href="#" aria-label="Twitter">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 5.92c-.77.34-1.6.57-2.47.68.89-.53 1.57-1.37 1.89-2.37-.83.49-1.75.84-2.73 1.03A4.13 4.13 0 0 0 12.1 8.1c0 .32.03.62.1.92-3.43-.17-6.47-1.82-8.5-4.34-.36.63-.56 1.36-.56 2.13 0 1.47.75 2.76 1.89 3.52-.7-.02-1.36-.22-1.94-.54v.05c0 2.05 1.5 3.77 3.49 4.16-.36.1-.75.15-1.14.15-.28 0-.55-.03-.82-.08.55 1.72 2.15 2.97 4.05 3A8.3 8.3 0 0 1 2 19.54a11.72 11.72 0 0 0 6.29 1.85c7.55 0 11.68-6.33 11.68-11.82 0-.18 0-.36-.01-.53.8-.6 1.5-1.34 2.04-2.18Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a class="icon" href="#" aria-label="Facebook">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.25-1.5 1.55-1.5h1.7V4.1A23 23 0 0 0 14 4c-2.38 0-4 1.45-4 4.1V11H7v3h3v8h3.5Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a class="icon" href="#" aria-label="Instagram">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                                        <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                                        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a class="icon" href="#" aria-label="GitHub">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.1 3.29 9.42 7.86 10.95.58.1.8-.25.8-.57v-2.02c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.04 1.78 2.73 1.26 3.4.96.1-.75.41-1.25.74-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.19-3.07-.12-.3-.52-1.5.11-3.14 0 0 .98-.32 3.2 1.21.93-.26 1.91-.39 2.89-.39.98 0 1.96.13 2.89.39 2.22-1.53 3.19-1.21 3.19-1.21.64 1.64.24 2.84.12 3.14.74.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.35-5.25 5.64.42.36.8 1.06.8 2.14v3.17c0 .32.21.69.81.57C20.21 21.41 23.5 17.1 23.5 12 23.5 5.73 18.27.5 12 .5Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="footer-section">
-                        <h4>COMPANY</h4>
-                        <ul>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Features</a></li>
-                            <li><a href="#">Works</a></li>
-                            <li><a href="#">Career</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>HELP</h4>
-                        <ul>
-                            <li><a href="#">Customer Support</a></li>
-                            <li><a href="#">Delivery Details</a></li>
-                            <li><a href="#">Terms & Conditions</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>FAQ</h4>
-                        <ul>
-                            <li><a href="#">Account</a></li>
-                            <li><a href="#">Manage Deliveries</a></li>
-                            <li><a href="#">Orders</a></li>
-                            <li><a href="#">Payments</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-section">
-                        <h4>RESOURCES</h4>
-                        <ul>
-                            <li><a href="#">Free eBooks</a></li>
-                            <li><a href="#">Development Tutorial</a></li>
-                            <li><a href="#">How to - Blog</a></li>
-                            <li><a href="#">Youtube Playlist</a></li>
-                        </ul>
+                    <div class="footer-bottom">
+                        <p>Shop.co © 2000-2023, All Rights Reserved</p>
+                        <div class="payment-icons" aria-label="Payment methods">
+                            <span class="pm">
+                                <svg width="24" height="12" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#1A1F71"/>
+                                    <path fill="#fff" d="M25.1 17.9l1.8-11.6h2.9l-1.8 11.6h-2.9zm13.7-11.4c-.6-.2-1.5-.4-2.6-.4-2.9 0-4.9 1.5-4.9 3.7 0 1.6 1.5 2.5 2.6 3 1.2.6 1.6 1 1.6 1.5 0 .8-1 1.1-1.9 1.1-1.3 0-2-.2-3.1-.6l-.4-.2-.4 2.6c.8.3 2.3.6 3.9.6 3.7 0 6.1-1.5 6.1-3.9 0-1.3-.9-2.3-2.7-3.1-1.1-.5-1.8-.9-1.8-1.5 0-.5.6-1 1.9-1 1 0 1.8.2 2.3.4l.3.1.4-2.5zm11 0h-2.3c-.7 0-1.2.2-1.5.9l-4.4 10.7h3.1l.6-1.6h3.7l.3 1.6H52l-2.2-11.6zM46.3 15l1.5-4.2 0-.1.9 4.3h-2.4zM21.3 6.3l-2.9 7.9-.3-1.5c-.7-1.9-2.5-4-4.7-5.4l2.7 10.6h3.2l4.7-11.6h-2.7zM14.7 6.3H9.5l-.1.2c4.3 1.1 7.2 3.7 8.4 6.8l-1.2-6.7c-.1-.2-.3-.3-.5-.3z"/>
+                                </svg>
+                            </span>
+                            <span class="pm">
+                                <svg width="24" height="12" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
+                                    <circle cx="28" cy="12" r="6.5" fill="#EB001B"/>
+                                    <circle cx="36" cy="12" r="6.5" fill="#F79E1B"/>
+                                    <path d="M31.8 7.5h0A6.5 6.5 0 0031.8 16.5h0A6.5 6.5 0 0031.8 7.5z" fill="#FF5F00"/>
+                                </svg>
+                            </span>
+                            <span class="pm">
+                                <svg width="24" height="12" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
+                                    <path fill="#003087" d="M16 16l1.3-8h6c2.4 0 3.9 1.2 3.9 3 0 2.8-2.3 5-5.6 5H16z"/>
+                                    <path fill="#009CDE" d="M38 8h6.8c2 0 3.2 1 3.2 2.6 0 2.5-2 4.4-4.8 4.4H38l1.1-7z"/>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div class="footer-bottom">
-                    <p>Shop.co © 2000-2023, All Rights Reserved</p>
-                    <div class="payment-icons" aria-label="Payment methods">
-                        <span class="pm">
-                            <!-- VISA -->
-                            <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect width="64" height="24" rx="4" fill="#1A1F71"/>
-                                <path fill="#fff" d="M25.1 17.9l1.8-11.6h2.9l-1.8 11.6h-2.9zm13.7-11.4c-.6-.2-1.5-.4-2.6-.4-2.9 0-4.9 1.5-4.9 3.7 0 1.6 1.5 2.5 2.6 3 1.2.6 1.6 1 1.6 1.5 0 .8-1 1.1-1.9 1.1-1.3 0-2-.2-3.1-.6l-.4-.2-.4 2.6c.8.3 2.3.6 3.9.6 3.7 0 6.1-1.5 6.1-3.9 0-1.3-.9-2.3-2.7-3.1-1.1-.5-1.8-.9-1.8-1.5 0-.5.6-1 1.9-1 1 0 1.8.2 2.3.4l.3.1.4-2.5zm11 0h-2.3c-.7 0-1.2.2-1.5.9l-4.4 10.7h3.1l.6-1.6h3.7l.3 1.6H52l-2.2-11.6zM46.3 15l1.5-4.2 0-.1.9 4.3h-2.4zM21.3 6.3l-2.9 7.9-.3-1.5c-.7-1.9-2.5-4-4.7-5.4l2.7 10.6h3.2l4.7-11.6h-2.7zM14.7 6.3H9.5l-.1.2c4.3 1.1 7.2 3.7 8.4 6.8l-1.2-6.7c-.1-.2-.3-.3-.5-.3z"/>
-                            </svg>
-                        </span>
-                        <span class="pm">
-                            <!-- MasterCard -->
-                            <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
-                                <circle cx="28" cy="12" r="6.5" fill="#EB001B"/>
-                                <circle cx="36" cy="12" r="6.5" fill="#F79E1B"/>
-                                <path d="M31.8 7.5h0A6.5 6.5 0 0031.8 16.5h0A6.5 6.5 0 0031.8 7.5z" fill="#FF5F00"/>
-                            </svg>
-                        </span>
-                        <span class="pm">
-                            <!-- PayPal -->
-                            <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
-                                <path fill="#003087" d="M16 16l1.3-8h6c2.4 0 3.9 1.2 3.9 3 0 2.8-2.3 5-5.6 5H16z"/>
-                                <path fill="#009CDE" d="M38 8h6.8c2 0 3.2 1 3.2 2.6 0 2.5-2 4.4-4.8 4.4H38l1.1-7z"/>
-                            </svg>
-                        </span>
-                        <span class="pm">
-                            <!-- Apple Pay -->
-                            <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
-                                <path fill="#000" d="M23.7 12.6c0-2.4 2-3.6 2-3.6-.9-1.3-2.3-1.3-2.8-1.3-1.2 0-2.2.7-2.8.7-.6 0-1.4-.7-2.3-.7-1.2 0-2.4.7-3 1.7-1.3 2.3-.3 5.7.9 7.6.6.9 1.3 1.9 2.2 1.9.9 0 1.2-.6 2.3-.6 1.1 0 1.3.6 2.3.6.9 0 1.5-.9 2.1-1.8.7-1 1-2 1-2s-1.9-.7-1.9-2.9zM38.8 7.7v8.8h1.6v-2.9h1.8c1.9 0 3.1-1.3 3.1-2.9 0-1.6-1.2-3-3.1-3H38.8zm1.6 1.3H42c.9 0 1.6.7 1.6 1.7s-.7 1.7-1.6 1.7h-1.6V9zM49 7.7v8.8h1.6v-3.5h1.5c1.5 0 2.7-1.1 2.7-2.6 0-1.4-1.1-2.6-2.7-2.6H49zm1.6 1.3h1.5c.7 0 1.2.6 1.2 1.3 0 .8-.5 1.3-1.2 1.3H50.6V9z"/>
-                            </svg>
-                        </span>
-                        <span class="pm">
-                            <!-- Google Pay (GPay) -->
-                            <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
-                                <path d="M28 12a6 6 0 116 6h-3v-2h3a4 4 0 10-1.2-7.8l1.2 1.8H30V8h8" fill="#4285F4"/>
-                                <path d="M23.7 12a6 6 0 016-6v3a3 3 0 00-3 3h-3z" fill="#34A853"/>
-                                <path d="M23.7 12a6 6 0 001.8 4.2l2.1-2.1A3 3 0 0126.7 12h-3z" fill="#FBBC05"/>
-                                <path d="M27.6 16.2A6 6 0 0030 17.1l1.8-2.7-2.1-2.1-2.1 3.9z" fill="#EA4335"/>
-                            </svg>
-                        </span>
+            </footer>
+        `;
+    } else {
+        // Full footer for desktop
+        footerHTML = `
+            <footer class="footer">
+                <div class="container">
+                    <div class="footer-content">
+                        <div class="footer-section">
+                            <h2>SHOP.CO</h2>
+                            <p>We have clothes that suits your style and which you're proud to wear. From women to men.</p>
+                            <div class="social-icons" role="group" aria-label="Social links">
+                                <a class="icon" href="#" aria-label="Twitter">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M22 5.92c-.77.34-1.6.57-2.47.68.89-.53 1.57-1.37 1.89-2.37-.83.49-1.75.84-2.73 1.03A4.13 4.13 0 0 0 12.1 8.1c0 .32.03.62.1.92-3.43-.17-6.47-1.82-8.5-4.34-.36.63-.56 1.36-.56 2.13 0 1.47.75 2.76 1.89 3.52-.7-.02-1.36-.22-1.94-.54v.05c0 2.05 1.5 3.77 3.49 4.16-.36.1-.75.15-1.14.15-.28 0-.55-.03-.82-.08.55 1.72 2.15 2.97 4.05 3A8.3 8.3 0 0 1 2 19.54a11.72 11.72 0 0 0 6.29 1.85c7.55 0 11.68-6.33 11.68-11.82 0-.18 0-.36-.01-.53.8-.6 1.5-1.34 2.04-2.18Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a class="icon" href="#" aria-label="Facebook">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.25-1.5 1.55-1.5h1.7V4.1A23 23 0 0 0 14 4c-2.38 0-4 1.45-4 4.1V11H7v3h3v8h3.5Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a class="icon" href="#" aria-label="Instagram">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/>
+                                        <circle cx="12" cy="12" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+                                        <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                                <a class="icon" href="#" aria-label="GitHub">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 .5C5.73.5.5 5.73.5 12c0 5.1 3.29 9.42 7.86 10.95.58.1.8-.25.8-.57v-2.02c-3.2.7-3.87-1.36-3.87-1.36-.53-1.33-1.28-1.69-1.28-1.69-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.04 1.78 2.73 1.26 3.4.96.1-.75.41-1.25.74-1.54-2.55-.29-5.23-1.27-5.23-5.65 0-1.25.45-2.27 1.19-3.07-.12-.3-.52-1.5.11-3.14 0 0 .98-.32 3.2 1.21.93-.26 1.91-.39 2.89-.39.98 0 1.96.13 2.89.39 2.22-1.53 3.19-1.21 3.19-1.21.64 1.64.24 2.84.12 3.14.74.8 1.19 1.82 1.19 3.07 0 4.4-2.69 5.35-5.25 5.64.42.36.8 1.06.8 2.14v3.17c0 .32.21.69.81.57C20.21 21.41 23.5 17.1 23.5 12 23.5 5.73 18.27.5 12 .5Z" fill="currentColor"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="footer-section">
+                            <h4>COMPANY</h4>
+                            <ul>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Features</a></li>
+                                <li><a href="#">Works</a></li>
+                                <li><a href="#">Career</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h4>HELP</h4>
+                            <ul>
+                                <li><a href="#">Customer Support</a></li>
+                                <li><a href="#">Delivery Details</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h4>FAQ</h4>
+                            <ul>
+                                <li><a href="#">Account</a></li>
+                                <li><a href="#">Manage Deliveries</a></li>
+                                <li><a href="#">Orders</a></li>
+                                <li><a href="#">Payments</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section">
+                            <h4>RESOURCES</h4>
+                            <ul>
+                                <li><a href="#">Free eBooks</a></li>
+                                <li><a href="#">Development Tutorial</a></li>
+                                <li><a href="#">How to - Blog</a></li>
+                                <li><a href="#">Youtube Playlist</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Shop.co © 2000-2023, All Rights Reserved</p>
+                        <div class="payment-icons" aria-label="Payment methods">
+                            <span class="pm">
+                                <!-- VISA -->
+                                <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#1A1F71"/>
+                                    <path fill="#fff" d="M25.1 17.9l1.8-11.6h2.9l-1.8 11.6h-2.9zm13.7-11.4c-.6-.2-1.5-.4-2.6-.4-2.9 0-4.9 1.5-4.9 3.7 0 1.6 1.5 2.5 2.6 3 1.2.6 1.6 1 1.6 1.5 0 .8-1 1.1-1.9 1.1-1.3 0-2-.2-3.1-.6l-.4-.2-.4 2.6c.8.3 2.3.6 3.9.6 3.7 0 6.1-1.5 6.1-3.9 0-1.3-.9-2.3-2.7-3.1-1.1-.5-1.8-.9-1.8-1.5 0-.5.6-1 1.9-1 1 0 1.8.2 2.3.4l.3.1.4-2.5zm11 0h-2.3c-.7 0-1.2.2-1.5.9l-4.4 10.7h3.1l.6-1.6h3.7l.3 1.6H52l-2.2-11.6zM46.3 15l1.5-4.2 0-.1.9 4.3h-2.4zM21.3 6.3l-2.9 7.9-.3-1.5c-.7-1.9-2.5-4-4.7-5.4l2.7 10.6h3.2l4.7-11.6h-2.7zM14.7 6.3H9.5l-.1.2c4.3 1.1 7.2 3.7 8.4 6.8l-1.2-6.7c-.1-.2-.3-.3-.5-.3z"/>
+                                </svg>
+                            </span>
+                            <span class="pm">
+                                <!-- MasterCard -->
+                                <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
+                                    <circle cx="28" cy="12" r="6.5" fill="#EB001B"/>
+                                    <circle cx="36" cy="12" r="6.5" fill="#F79E1B"/>
+                                    <path d="M31.8 7.5h0A6.5 6.5 0 0031.8 16.5h0A6.5 6.5 0 0031.8 7.5z" fill="#FF5F00"/>
+                                </svg>
+                            </span>
+                            <span class="pm">
+                                <!-- PayPal -->
+                                <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
+                                    <path fill="#003087" d="M16 16l1.3-8h6c2.4 0 3.9 1.2 3.9 3 0 2.8-2.3 5-5.6 5H16z"/>
+                                    <path fill="#009CDE" d="M38 8h6.8c2 0 3.2 1 3.2 2.6 0 2.5-2 4.4-4.8 4.4H38l1.1-7z"/>
+                                </svg>
+                            </span>
+                            <span class="pm">
+                                <!-- Apple Pay -->
+                                <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
+                                    <path fill="#000" d="M23.7 12.6c0-2.4 2-3.6 2-3.6-.9-1.3-2.3-1.3-2.8-1.3-1.2 0-2.2.7-2.8.7-.6 0-1.4-.7-2.3-.7-1.2 0-2.4.7-3 1.7-1.3 2.3-.3 5.7.9 7.6.6.9 1.3 1.9 2.2 1.9.9 0 1.2-.6 2.3-.6 1.1 0 1.3.6 2.3.6.9 0 1.5-.9 2.1-1.8.7-1 1-2 1-2s-1.9-.7-1.9-2.9zM38.8 7.7v8.8h1.6v-2.9h1.8c1.9 0 3.1-1.3 3.1-2.9 0-1.6-1.2-3-3.1-3H38.8zm1.6 1.3H42c.9 0 1.6.7 1.6 1.7s-.7 1.7-1.6 1.7h-1.6V9zM49 7.7v8.8h1.6v-3.5h1.5c1.5 0 2.7-1.1 2.7-2.6 0-1.4-1.1-2.6-2.7-2.6H49zm1.6 1.3h1.5c.7 0 1.2.6 1.2 1.3 0 .8-.5 1.3-1.2 1.3H50.6V9z"/>
+                                </svg>
+                            </span>
+                            <span class="pm">
+                                <!-- Google Pay (GPay) -->
+                                <svg width="36" height="16" viewBox="0 0 64 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <rect width="64" height="24" rx="4" fill="#fff" stroke="#E6E6E6"/>
+                                    <path d="M28 12a6 6 0 116 6h-3v-2h3a4 4 0 10-1.2-7.8l1.2 1.8H30V8h8" fill="#4285F4"/>
+                                    <path d="M23.7 12a6 6 0 016-6v3a3 3 0 00-3 3h-3z" fill="#34A853"/>
+                                    <path d="M23.7 12a6 6 0 001.8 4.2l2.1-2.1A3 3 0 0126.7 12h-3z" fill="#FBBC05"/>
+                                    <path d="M27.6 16.2A6 6 0 0030 17.1l1.8-2.7-2.1-2.1-2.1 3.9z" fill="#EA4335"/>
+                                </svg>
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    `;
+            </footer>
+        `;
+    }
     
     document.getElementById('footer').innerHTML = footerHTML;
 }
