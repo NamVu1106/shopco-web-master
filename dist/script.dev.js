@@ -24,8 +24,13 @@ function closeBanner() {
 
 
 function toggleMobileMenu() {
+  console.log('Hamburger clicked!'); // Debug
+
   if (navMenu) {
     navMenu.classList.toggle('active');
+    console.log('Menu toggled:', navMenu.classList.contains('active')); // Debug
+  } else {
+    console.log('navMenu not found!'); // Debug
   }
 } // Update cart count (sync from localStorage if not provided)
 
