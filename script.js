@@ -86,20 +86,46 @@ function showNotification(message) {
 
 // Smooth scroll for navigation links
 function scrollToSection(sectionId) {
+    console.log('scrollToSection called with:', sectionId);
+    console.log('Current page:', window.location.pathname);
+    
+    // Check if we're on the homepage
+    const isHomePage = window.location.pathname.endsWith('index.html') || 
+                      window.location.pathname.endsWith('/') || 
+                      window.location.pathname === '' ||
+                      window.location.pathname.includes('index.html');
+    
+    console.log('Is homepage:', isHomePage);
+    
+    if (!isHomePage) {
+        // If not on homepage, navigate to homepage first
+        console.log('Not on homepage, redirecting to index.html#' + sectionId);
+        window.location.href = `index.html#${sectionId}`;
+        return;
+    }
+    
     const target = document.getElementById(sectionId);
     if (target) {
-        // Calculate offset for fixed navbar
-        const navbarHeight = document.querySelector('.navbar').offsetHeight;
-        const bannerHeight = document.getElementById('topBanner').style.display === 'none' ? 0 : document.getElementById('topBanner').offsetHeight;
-        const totalOffset = navbarHeight + bannerHeight;
+        console.log('Scrolling to section:', sectionId, target);
         
-        // Scroll to show the section title clearly (not hidden by navbar)
-        const targetPosition = target.offsetTop - totalOffset - 150; // 150px extra margin to show title clearly
+        // For dynamic sections, wait a bit longer for content to load
+        const delay = (sectionId === 'new-arrivals' || sectionId === 'top-selling') ? 300 : 100;
         
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
+        setTimeout(() => {
+            const finalTarget = document.getElementById(sectionId);
+            if (finalTarget) {
+                // Use scrollIntoView with scroll-margin-top for proper positioning
+                finalTarget.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                    inline: 'nearest'
+                });
+            } else {
+                console.log('Section not found:', sectionId);
+            }
+        }, delay);
+    } else {
+        console.log('Target element not found:', sectionId);
     }
 }
 
@@ -147,12 +173,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('top-selling')) loadTopSelling();
     if (document.getElementById('dressStyle')) loadDressStyle();
     if (document.getElementById('footer')) loadFooter();
+    
+    // Handle hash navigation on page load
+    if (window.location.hash) {
+        const sectionId = window.location.hash.substring(1);
+        console.log('Hash navigation detected:', sectionId);
+        setTimeout(() => {
+            scrollToSection(sectionId);
+        }, 500); // Wait for all content to load
+    }
 });
 
 // Load New Arrivals section
 function loadNewArrivals() {
+    // Get responsive scroll margin
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+    const scrollMargin = isMobile ? '60px' : isTablet ? '70px' : '80px';
+    
     const newArrivalsHTML = `
-        <section class="new-arrivals py-5">
+        <section class="new-arrivals py-5" style="scroll-margin-top: ${scrollMargin};">
             <div class="container">
                 <div class="text-center mb-5">
                     <h2 class="section-title">NEW ARRIVALS</h2>
@@ -235,8 +275,13 @@ function loadNewArrivals() {
 
 // Load Top Selling section
 function loadTopSelling() {
+    // Get responsive scroll margin
+    const isMobile = window.innerWidth <= 768;
+    const isTablet = window.innerWidth <= 1024 && window.innerWidth > 768;
+    const scrollMargin = isMobile ? '60px' : isTablet ? '70px' : '80px';
+    
     const topSellingHTML = `
-        <section class="top-selling py-5">
+        <section class="top-selling py-5" style="scroll-margin-top: ${scrollMargin};">
             <div class="container">
                 <div class="text-center mb-5">
                     <h2 class="section-title">TOP SELLING</h2>
