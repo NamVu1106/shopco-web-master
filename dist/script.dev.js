@@ -18,27 +18,19 @@ var cartCountElement = document.getElementById('cartCount'); // Close top banner
 function closeBanner() {
   if (topBanner) {
     topBanner.style.display = 'none';
-    document.body.style.paddingTop = '0'; // Update navbar position
+    document.body.style.paddingTop = '80px'; // Update navbar position
 
     var navbar = document.querySelector('.navbar');
 
     if (navbar) {
       navbar.style.top = '0';
-    } // Update hero margin instead of padding
+    } // Update hero padding
 
 
     var hero = document.querySelector('.hero');
 
     if (hero) {
-      hero.style.paddingTop = '0'; // Set responsive margin based on screen size
-
-      if (window.innerWidth <= 768) {
-        hero.style.marginTop = '80px';
-      } else if (window.innerWidth <= 1024) {
-        hero.style.marginTop = '90px';
-      } else {
-        hero.style.marginTop = '100px';
-      }
+      hero.style.paddingTop = '80px';
     }
   }
 } // Toggle mobile menu
