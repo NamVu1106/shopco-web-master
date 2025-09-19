@@ -99,6 +99,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 1024px) {
     .navbar {
         padding: 16px 0;
+        background-color: #F2F0F1;
     }
     
     .nav-container {
@@ -127,6 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
     .navbar {
         padding: 12px 0;
+        background-color: #F2F0F1;
     }
     
     .nav-container {
@@ -216,7 +218,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section Responsive */
 @media (max-width: 1024px) {
     .hero {
-        margin-top: 90px;
+        padding-top: 90px;
     }
     
     .hero-container {
@@ -272,7 +274,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .hero {
-        margin-top: 80px;
+        padding-top: 80px;
     }
     
     .hero-container {
@@ -445,7 +447,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Navigation */
 .navbar {
-    background-color: #fff;
+    background-color: #F2F0F1;
     padding: 18px 0;
     position: fixed;
     top: 44px;
@@ -654,9 +656,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero {
     background: #F2F0F1;
-    padding-top: 0;
+    padding-top: 100px;
     overflow: hidden;
-    margin-top: 100px;
+    margin-top: 0;
+    position: relative;
+    z-index: 999;
 }
 
 .hero-container {

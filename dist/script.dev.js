@@ -25,13 +25,13 @@ function closeBanner() {
 
     if (navbar) {
       navbar.style.top = '0';
-    } // Update hero margin
+    } // Update hero padding
 
 
     var hero = document.querySelector('.hero');
 
     if (hero) {
-      hero.style.marginTop = '80px';
+      hero.style.paddingTop = '80px';
     }
   }
 } // Toggle mobile menu

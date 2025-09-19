@@ -18,10 +18,10 @@ function closeBanner() {
             navbar.style.top = '0';
         }
         
-        // Update hero margin
+        // Update hero padding
         const hero = document.querySelector('.hero');
         if (hero) {
-            hero.style.marginTop = '80px';
+            hero.style.paddingTop = '80px';
         }
     }
 }
