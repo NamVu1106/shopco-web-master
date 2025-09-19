@@ -344,6 +344,7 @@ function loadDressStyle() {
 
 // Load Footer section
 function loadFooter() {
+    // Force refresh footer layout
     const footerHTML = `
         <footer class="footer">
             <div class="container">
