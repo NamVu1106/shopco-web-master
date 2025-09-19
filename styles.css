@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section Responsive */
 @media (max-width: 1024px) {
     .hero {
-        padding-top: 90px;
+        margin-top: 90px;
     }
     
     .hero-container {
@@ -288,7 +288,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 768px) {
     .hero {
-        padding-top: 80px;
+        margin-top: 80px;
     }
     
     .hero-container {
@@ -670,9 +670,9 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero {
     background: #F2F0F1;
-    padding-top: 100px;
+    padding-top: 0;
     overflow: hidden;
-    margin-top: 0;
+    margin-top: 100px;
     position: relative;
     z-index: 999;
 }
