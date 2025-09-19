@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - SHOP.CO</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* product page scoped tweaks */
+    .page-hero { background:#F2F0F1; padding:16px 0; }
+    .breadcrumb { color:rgba(0,0,0,0.6); font-size:14px; }
+
+    .products-wrap { display:grid; grid-template-columns:280px 1fr; gap:24px; margin:24px 0 40px; }
+
+    .filters { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:16px; padding:16px; position:sticky; top:100px; height:max-content; }
+    .filters h4 { font-size:16px; margin:12px 0; }
+    .filter-group { border-top:1px solid rgba(0,0,0,0.08); padding:12px 0 0; margin-top:12px; }
+    .filter-list { list-style:none; padding:0; margin:0; }
+    .filter-item { display:flex; justify-content:space-between; align-items:center; padding:10px 8px; border-radius:10px; cursor:pointer; }
+    .filter-item:hover { background:#F7F7F7; }
+    .filter-item.active { background:#000; color:#fff; }
+    .chevron { width:16px; height:16px; opacity:.6; }
+    .colors { display:flex; gap:10px; flex-wrap:wrap; }
+    .swatch { width:22px; height:22px; border-radius:50%; border:1px solid rgba(0,0,0,0.15); cursor:pointer; }
+    .range-wrap { position:relative; height:24px; margin:10px 0 4px; }
+    .range { -webkit-appearance:none; appearance:none; width:100%; height:4px; background:#000; outline:none; position:absolute; top:10px; }
+    .range::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; width:16px; height:16px; background:#000; border-radius:50%; cursor:pointer; border:2px solid #fff; box-shadow:0 0 0 1px rgba(0,0,0,0.15); }
+    .labels { display:flex; justify-content:space-between; font-size:14px; color:rgba(0,0,0,0.8); }
+    .filters .actions { margin-top:16px; }
+    .btn-reset { width:100%; background:#000; color:#fff; border:none; border-radius:999px; padding:12px 16px; font-weight:600; }
+
+    .list-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+    .sort { border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px 10px; }
+    .grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; }
+    .card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; overflow:hidden; transition:box-shadow .2s ease, transform .2s ease; }
+    .card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); }
+    .card img { width:100%; height:280px; object-fit:cover; display:block; }
+    .card .body { padding:14px; }
+    .card h5 { font-size:16px; margin:0 0 8px; font-weight:600; }
+    .rating { color:#F5B300; font-size:14px; margin-bottom:8px; }
+    .rating .muted{ color:rgba(0,0,0,0.6); font-size:12px; margin-left:6px; }
+    .price { display:flex; align-items:center; gap:10px; }
+    .price strong { font-size:16px; }
+    .price .old { color:rgba(0,0,0,0.5); text-decoration:line-through; }
+    .badge { background:#FDECEF; color:#D00; border-radius:999px; padding:2px 8px; font-size:12px; }
+    .pagination { display:flex; gap:8px; justify-content:center; margin:24px 0; }
+    .pagination .page { border:1px solid rgba(0,0,0,0.15); padding:8px 12px; border-radius:8px; cursor:pointer; }
+    .pagination .active { background:#000; color:#fff; border-color:#000; }
+
+    @media (max-width: 992px){ .grid{ grid-template-columns:repeat(3, 1fr);} }
+    @media (max-width: 768px){ .products-wrap{ grid-template-columns:1fr; } .grid{ grid-template-columns:repeat(2, 1fr);} }
+    @media (max-width: 520px){ .grid{ grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <!-- Top Banner -->
+  <div class="top-banner" id="topBanner">
+        <span class="top-banner-text">Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a></span>
+        <span class="close-btn" onclick="closeBanner()" aria-label="Close banner" role="button">×</span>
+    </div>
+
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="mobile-menu-toggle">
+        <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
+        <div class="logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+        <ul class="nav-links">
+          <li><a href="product.html">Product</a></li>
+          <li><a href="#">On Sale</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Brands</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="search-container">
+            <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products" id="searchInput">
+          </div>
+          <div class="nav-icons">
+            <button class="icon-btn" aria-label="Cart" onclick="location.href='cart.html'">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="20" r="1.6" fill="#000"/>
+                <circle cx="17" cy="20" r="1.6" fill="#000"/>
+              </svg>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="icon-btn" aria-label="Account">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/>
+                <path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / Products</div>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="products-wrap">
+      <aside class="filters" id="filters">
+        <div class="filter-header" style="display:flex;justify-content:space-between;align-items:center;">
+          <h3 style="margin:0;font-size:18px;">Filters</h3>
+        </div>
+
+        <div class="filter-group">
+          <ul class="filter-list" id="categoryList"></ul>
+        </div>
+
+        <div class="filter-group">
+          <h4>Price</h4>
+          <div class="range-wrap">
+            <input type="range" min="0" max="500" value="0" id="rangeMin" class="range">
+            <input type="range" min="0" max="500" value="500" id="rangeMax" class="range">
+          </div>
+          <div class="labels"><span id="minLabel">$0</span><span id="maxLabel">$500</span></div>
+        </div>
+
+        <div class="filter-group">
+          <h4>Colors</h4>
+          <div class="colors" id="colorSwatches"></div>
+        </div>
+
+        <div class="actions"><button class="btn-reset" id="resetBtn2">Reset Filter</button></div>
+      </aside>
+
+      <section>
+        <div class="list-head">
+          <h2 style="margin:0;">All Products</h2>
+          <div style="display:flex; align-items:center; gap:14px; color:rgba(0,0,0,0.6);">
+            <span id="countLabel"></span>
+            <select class="sort" id="sortSelect">
+            <option value="newest">Newest</option>
+            <option value="popular">Most Popular</option>
+            <option value="price_desc">Highest Price</option>
+            <option value="price_asc">Lowest Price</option>
+            </select>
+          </div>
+        </div>
+        <div class="grid" id="productGrid"></div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+    </div>
+  </main>
+
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-card">
+        <h3 class="newsletter-title">STAY UPTO DATE ABOUT OUR LATEST OFFERS</h3>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); showNotification('Subscribed successfully!');">
+          <div class="input-wrap">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" aria-label="Email address" required>
+          </div>
+          <button type="submit" class="newsletter-btn">Subscribe to Newsletter</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // ---------- Mock catalog ----------
+    const CATEGORIES = ['T-Shirt','Trousers'];
+    const COLORS = ['#000000','#ffffff','#e74c3c','#3498db','#2ecc71','#f1c40f'];
+    const CATALOG = [
+      { name:'T‑shirt With Tape Details', img:'shopco-web-master/src/assets/images/newarrivalimg1.png', category:'T-Shirt', price:120, oldPrice:null, color:'#000000' },
+      { name:'Skinny Fit Jeans', img:'shopco-web-master/src/assets/images/newarrivalimg2.png', category:'Trousers', price:240, oldPrice:260, color:'#2ecc71' },
+      { name:'Checkered Shirt', img:'shopco-web-master/src/assets/images/newarrivalimg3.png', category:'T-Shirt', price:180, oldPrice:null, color:'#3498db' },
+      { name:'Sleeve Striped T‑shirt', img:'shopco-web-master/src/assets/images/newarrivalimg4.png', category:'T-Shirt', price:130, oldPrice:160, color:'#f1c40f' },
+      { name:'Vertical Striped Shirt', img:'shopco-web-master/src/assets/images/topsellingimg1.png', category:'T-Shirt', price:186, oldPrice:232, color:'#000000' },
+      { name:'Courage Graphic T‑shirt', img:'shopco-web-master/src/assets/images/topsellingimg2.png', category:'T-Shirt', price:145, oldPrice:null, color:'#e74c3c' },
+      { name:'Loose Fit Bermuda Shorts', img:'shopco-web-master/src/assets/images/topsellingimg3.png', category:'Trousers', price:80, oldPrice:null, color:'#ffffff' },
+      { name:'Faded Skinny Jeans', img:'shopco-web-master/src/assets/images/topsellingimg4.png', category:'Trousers', price:210, oldPrice:null, color:'#3498db' }
+    ];
+    const PRODUCTS = Array.from({length:36}).map((_,i)=>{
+      const base = CATALOG[i%CATALOG.length];
+      return { id:i+1, ...base };
+    });
+
+    // ---------- UI refs ----------
+    const grid = document.getElementById('productGrid');
+    const pagination = document.getElementById('pagination');
+    const sortSelect = document.getElementById('sortSelect');
+    const categoryList = document.getElementById('categoryList');
+    const colorSwatches = document.getElementById('colorSwatches');
+  // removed old inputs
+    const searchInput = document.getElementById('searchInput');
+
+    let state = { page:1, perPage:8, category:null, color:null, min:0, max:500, sort:'newest', search:'' };
+
+    // Build filters
+    CATEGORIES.forEach(cat=>{
+      const li = document.createElement('li');
+      li.className='filter-item';
+      li.innerHTML = `<span>${cat}</span><span class="chevron">›</span>`;
+      li.onclick = ()=>{ state.category = state.category===cat? null : cat; updateCategoryList(); render(); };
+      categoryList.appendChild(li);
+    });
+    function updateCategoryList(){
+      [...categoryList.children].forEach(li=>{
+        li.classList.toggle('active', li.firstChild.textContent===state.category);
+      });
+    }
+
+    COLORS.forEach(col=>{
+      const el = document.createElement('div');
+      el.className = 'swatch'; el.style.background = col;
+      el.title = col;
+      el.onclick = ()=>{ state.color = state.color===col? null : col; updateSwatches(); render(); };
+      colorSwatches.appendChild(el);
+    });
+    function updateSwatches(){
+      [...colorSwatches.children].forEach((el,idx)=>{
+        el.style.outline = COLORS[idx]===state.color? '2px solid #000' : 'none';
+      })
+    }
+
+    const rangeMin=document.getElementById('rangeMin');
+    const rangeMax=document.getElementById('rangeMax');
+    function clampRanges(){
+      if(+rangeMin.value>+rangeMax.value){ const t=rangeMin.value; rangeMin.value=rangeMax.value; rangeMax.value=t; }
+      document.getElementById('minLabel').textContent = `$${rangeMin.value}`;
+      document.getElementById('maxLabel').textContent = `$${rangeMax.value}`;
+    }
+    rangeMin.oninput = ()=>{ clampRanges(); state.min = +rangeMin.value; state.page=1; render(); };
+    rangeMax.oninput = ()=>{ clampRanges(); state.max = +rangeMax.value; state.page=1; render(); };
+    document.getElementById('resetBtn2').onclick = ()=>{ state={ page:1, perPage:8, category:null, color:null, min:0, max:500, sort:'newest', search:'' }; searchInput.value=''; updateCategoryList(); updateSwatches(); rangeMin.value=0; rangeMax.value=500; render(); };
+    sortSelect.onchange = ()=>{ state.sort = sortSelect.value; render(); };
+    searchInput.oninput = ()=>{ state.search = searchInput.value.trim().toLowerCase(); state.page=1; render(); };
+
+    function applySort(arr){
+      const a=[...arr];
+      switch(state.sort){
+        case 'price_desc': return a.sort((x,y)=>y.price-x.price);
+        case 'price_asc': return a.sort((x,y)=>x.price-y.price);
+        case 'popular': return a; // placeholder
+        default: return a; // newest – mock order
+      }
+    }
+
+    function render(){
+      let data = PRODUCTS.filter(p=>
+        (state.category? p.category===state.category : true) &&
+        (state.color? p.color===state.color : true) &&
+        p.price>=state.min && p.price<=state.max &&
+        (state.search? p.name.toLowerCase().includes(state.search):true)
+      );
+      data = applySort(data);
+      const total = data.length; const pages = Math.max(1, Math.ceil(total/state.perPage));
+      if(state.page>pages) state.page = pages;
+      const start = (state.page-1)*state.perPage; const pageData = data.slice(start, start+state.perPage);
+
+      document.getElementById('countLabel').textContent = `${total} Products`;
+      grid.innerHTML = pageData.map(p=>`
+        <a href="product-detail.html?id=${p.id}" class="card" style="display:block;text-decoration:none;color:inherit">
+          <img src="${p.img}" alt="${p.name}">
+          <div class="body">
+            <h5>${p.name}</h5>
+            <div class="rating">★★★★☆ <span class="muted">3.9/5</span></div>
+            <div class="price">
+              <strong>$${p.price}</strong>
+              ${p.oldPrice? `<span class='old'>$${p.oldPrice}</span><span class='badge'>-${Math.min(80, Math.floor(100-(p.price/p.oldPrice*100)))}%</span>`:''}
+            </div>
+          </div>
+        </a>
+      `).join('');
+
+      // pagination
+      pagination.innerHTML = '';
+      const prev = document.createElement('button'); prev.className='page'; prev.textContent='Previous'; prev.disabled = state.page===1; prev.onclick=()=>{ if(state.page>1){ state.page--; render(); } };
+      pagination.appendChild(prev);
+      for(let i=1;i<=pages;i++){
+        const b=document.createElement('button'); b.className='page'+(i===state.page?' active':''); b.textContent=i; b.onclick=()=>{ state.page=i; render(); };
+        pagination.appendChild(b);
+      }
+      const next = document.createElement('button'); next.className='page'; next.textContent='Next'; next.disabled = state.page===pages; next.onclick=()=>{ if(state.page<pages){ state.page++; render(); } };
+      pagination.appendChild(next);
+    }
+
+  // init
+  updateCategoryList(); updateSwatches();
+  // ensure min/max synced with slider values on first load
+  const rangeMinInit=document.getElementById('rangeMin');
+  const rangeMaxInit=document.getElementById('rangeMax');
+  state.min = +rangeMinInit.value; state.max = +rangeMaxInit.value; clampRanges();
+  render(); loadFooter();
+  </script>
+</body>
+</html>
+

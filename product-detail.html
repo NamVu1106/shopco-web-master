@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail - SHOP.CO</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .detail-wrap{max-width:1140px;margin:24px auto 40px;padding:0 24px;}
+    .top-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:24px;align-items:start}
+    .gal{display:grid;grid-template-columns:80px 1fr;gap:16px;align-items:start}
+    .thumbs{display:flex;flex-direction:column;gap:12px;width:80px}
+    .thumbs img{width:80px;height:80px;object-fit:cover;border-radius:8px;border:1px solid rgba(0,0,0,.1);cursor:pointer;transition:all 0.2s}
+    .thumbs img:hover{transform:scale(1.05)}
+    .thumbs img.active{outline:2px solid #000;outline-offset:2px}
+    .preview{border:1px solid rgba(0,0,0,.1);border-radius:12px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;height:500px;position:relative}
+    .preview img{width:100%;height:100%;display:block;object-fit:cover}
+    .product-info{padding-left:0}
+    .title{font-size:32px;font-weight:800;margin:0 0 12px;line-height:1.2}
+    .rating{color:#F5B300;font-size:16px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+    .rating .muted{color:rgba(0,0,0,.6);font-size:14px}
+    .price-line{display:flex;align-items:center;gap:16px;margin:16px 0 24px}
+    .price-line strong{font-size:24px;font-weight:700}
+    .price-line .old{color:rgba(0,0,0,.5);text-decoration:line-through;font-size:18px}
+    .badge{background:#FDECEF;color:#D00;border-radius:999px;padding:4px 12px;font-size:12px;font-weight:600}
+    .description{margin:24px 0;color:rgba(0,0,0,.7);line-height:1.6;font-size:16px}
+    .option-group{margin:24px 0}
+    .option-label{font-weight:600;margin-bottom:12px;font-size:16px;color:#000}
+    .swatches,.sizes{display:flex;gap:12px;margin:12px 0}
+    .sw{width:32px;height:32px;border-radius:50%;border:2px solid rgba(0,0,0,.2);cursor:pointer;position:relative;transition:all 0.2s}
+    .sw:hover{transform:scale(1.1)}
+    .sw.active{outline:2px solid #000;outline-offset:2px}
+    .sw.active::after{content:"";position:absolute;inset:6px;border:2px solid #fff;border-radius:50%}
+    .size{border:1px solid rgba(0,0,0,.2);border-radius:999px;padding:10px 16px;cursor:pointer;background:#fff;font-weight:500;transition:all 0.2s;min-width:44px;text-align:center}
+    .size:hover{background:#f5f5f5}
+    .size.active{background:#000;color:#fff;border-color:#000}
+    .actions{display:flex;gap:16px;margin:32px 0;align-items:center}
+    .qty{display:inline-flex;align-items:center;border:1px solid rgba(0,0,0,.2);border-radius:999px;overflow:hidden;background:#fff}
+    .qty button{width:40px;height:40px;border:0;background:#fff;cursor:pointer;font-size:18px;font-weight:600;transition:background 0.2s}
+    .qty button:hover{background:#f5f5f5}
+    .qty span{width:50px;text-align:center;font-weight:600;font-size:16px}
+    .btn-dark{background:#000;color:#fff;border:none;border-radius:999px;padding:14px 32px;cursor:pointer;font-weight:600;font-size:16px;transition:all 0.2s;min-width:140px}
+    .btn-dark:hover{background:#333;transform:translateY(-1px)}
+    .tabs{display:flex;gap:32px;border-bottom:1px solid rgba(0,0,0,.1);margin:48px 0 24px}
+    .tab{padding:16px 0;cursor:pointer;color:rgba(0,0,0,.6);font-weight:500;font-size:16px;transition:all 0.2s}
+    .tab:hover{color:#000}
+    .tab.active{color:#000;border-bottom:2px solid #000}
+    .tab-panel{display:none;padding:24px 0;color:rgba(0,0,0,.7);line-height:1.6}
+    .tab-panel.active{display:block}
+    .grid-like{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:32px 0}
+    .card{background:#fff;border:1px solid rgba(0,0,0,.1);border-radius:12px;overflow:hidden;transition:all 0.2s;cursor:pointer}
+    .card:hover{transform:translateY(-4px);box-shadow:0 8px 25px rgba(0,0,0,.1)}
+    .card img{width:100%;height:200px;object-fit:cover}
+    .card .body{padding:16px}
+    .card .body strong{display:block;margin-bottom:8px;font-size:16px}
+    .card .price{color:#000;font-weight:600;font-size:16px}
+    .crumbs{max-width:1140px;margin:16px auto 0;padding:0 24px;color:rgba(0,0,0,.6);font-size:14px;display:flex;gap:8px;align-items:center}
+    .crumbs a{color:inherit;text-decoration:none;transition:color 0.2s}
+    .crumbs a:hover{color:#000}
+    .crumbs .sep{opacity:.6}
+    @media(max-width:900px){
+      .top-grid{grid-template-columns:1fr;gap:24px}
+      .thumbs{flex-direction:row;width:auto;overflow-x:auto;padding-bottom:8px}
+      .thumbs img{min-width:60px;height:60px}
+      .preview{height:300px}
+      .actions{flex-direction:column;align-items:stretch;gap:12px}
+      .btn-dark{text-align:center}
+      .grid-like{grid-template-columns:repeat(2,1fr);gap:16px}
+    }
+    @media(max-width:600px){
+      .grid-like{grid-template-columns:1fr}
+      .tabs{gap:16px;overflow-x:auto}
+      .tab{white-space:nowrap;padding:12px 0}
+    }
+  </style>
+</head>
+<body>
+  <div class="top-banner" id="topBanner">
+    <span class="top-banner-text">Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a></span>
+    <span class="close-btn" onclick="closeBanner()" aria-label="Close banner" role="button">×</span>
+  </div>
+
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="mobile-menu-toggle">
+        <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
+        <div class="logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+        <ul class="nav-links">
+          <li><a href="product.html">Product</a></li>
+          <li><a href="#">On Sale</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Brands</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="search-container">
+            <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+          </div>
+          <div class="nav-icons">
+            <button class="icon-btn" aria-label="Cart" onclick="location.href='cart.html'">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="20" r="1.6" fill="#000"/>
+                <circle cx="17" cy="20" r="1.6" fill="#000"/>
+              </svg>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="icon-btn" aria-label="Account">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/>
+                <path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div class="crumbs"><a href="index.html">Home</a><span class="sep">›</span><a href="#">Shop</a><span class="sep">›</span><a href="#">Men</a><span class="sep">›</span><span id="crumbCat">T‑shirts</span></div>
+  <section class="detail-wrap">
+    <div class="top-grid">
+      <div class="gal">
+        <div class="thumbs" id="thumbs">
+          <img src="shopco-web-master/src/assets/images/newarrivalimg1.png" class="active" data-src="shopco-web-master/src/assets/images/newarrivalimg1.png" alt="thumb1">
+          <img src="shopco-web-master/src/assets/images/newarrivalimg2.png" data-src="shopco-web-master/src/assets/images/newarrivalimg2.png" alt="thumb2">
+          <img src="shopco-web-master/src/assets/images/newarrivalimg3.png" data-src="shopco-web-master/src/assets/images/newarrivalimg3.png" alt="thumb3">
+          <img src="shopco-web-master/src/assets/images/newarrivalimg4.png" data-src="shopco-web-master/src/assets/images/newarrivalimg4.png" alt="thumb4">
+        </div>
+        <div class="preview"><img id="previewImg" src="shopco-web-master/src/assets/images/newarrivalimg1.png" alt="preview"></div>
+      </div>
+      <div class="product-info">
+        <h1 class="title">T‑shirt With Tape Details</h1>
+        <div class="rating">★★★★☆ <span class="muted">4.5/5</span></div>
+        <div class="price-line">
+          <strong>$120</strong>
+          <span class="old">$160</span>
+          <span class="badge">-25%</span>
+        </div>
+        <p class="description">This graphic t‑shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.</p>
+
+        <div class="option-group">
+          <div class="option-label">Select Colors</div>
+          <div class="swatches" id="colorSel">
+            <div class="sw active" data-color="#000000" style="background:#000"></div>
+            <div class="sw" data-color="#2ecc71" style="background:#2ecc71"></div>
+            <div class="sw" data-color="#3498db" style="background:#3498db"></div>
+          </div>
+        </div>
+
+        <div class="option-group">
+          <div class="option-label">Choose Size</div>
+          <div class="sizes" id="sizeSel">
+            <button class="size">S</button>
+            <button class="size active">M</button>
+            <button class="size">L</button>
+            <button class="size">XL</button>
+          </div>
+        </div>
+
+        <div class="actions">
+          <div class="qty"><button id="minus">−</button><span id="qty">1</span><button id="plus">＋</button></div>
+          <button class="btn-dark" id="addToCartBtn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="details">Product Details</div>
+      <div class="tab" data-tab="reviews">Ratings & Reviews</div>
+      <div class="tab" data-tab="faqs">FAQs</div>
+    </div>
+    <div class="tab-panel active" id="panel-details">
+      <p>Material: 100% Cotton. Care: Machine wash cold, tumble dry low. Fit: Regular.</p>
+    </div>
+    <div class="tab-panel" id="panel-reviews">
+      <p>(Placeholder) Write your first review.</p>
+    </div>
+    <div class="tab-panel" id="panel-faqs">
+      <p>(Placeholder) Frequently asked questions.</p>
+    </div>
+
+    <h2 style="margin-top:48px;font-size:24px;font-weight:700;color:#000;">You might also like</h2>
+    <div class="grid-like">
+      <div class="card" onclick="location.href='product-detail.html?id=5'"><img src="shopco-web-master/src/assets/images/topsellingimg1.png" alt="like1"><div class="body"><strong>Vertical Striped Shirt</strong><div class="price">$186</div></div></div>
+      <div class="card" onclick="location.href='product-detail.html?id=6'"><img src="shopco-web-master/src/assets/images/topsellingimg2.png" alt="like2"><div class="body"><strong>Courage Graphic T‑shirt</strong><div class="price">$145</div></div></div>
+      <div class="card" onclick="location.href='product-detail.html?id=7'"><img src="shopco-web-master/src/assets/images/topsellingimg3.png" alt="like3"><div class="body"><strong>Loose Fit Bermuda Shorts</strong><div class="price">$80</div></div></div>
+      <div class="card" onclick="location.href='product-detail.html?id=8'"><img src="shopco-web-master/src/assets/images/topsellingimg4.png" alt="like4"><div class="body"><strong>Faded Skinny Jeans</strong><div class="price">$210</div></div></div>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-card">
+        <h3 class="newsletter-title">STAY UPTO DATE ABOUT OUR LATEST OFFERS</h3>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); showNotification('Subscribed successfully!');">
+          <div class="input-wrap">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" aria-label="Email address" required>
+          </div>
+          <button type="submit" class="newsletter-btn">Subscribe to Newsletter</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    // simple product catalog synced with product.html ids
+    const CATALOG = [
+      { id:1, name:'T‑shirt With Tape Details', img:['shopco-web-master/src/assets/images/newarrivalimg1.png','shopco-web-master/src/assets/images/newarrivalimg2.png','shopco-web-master/src/assets/images/newarrivalimg3.png','shopco-web-master/src/assets/images/newarrivalimg4.png'], price:120, old:160 },
+      { id:2, name:'Skinny Fit Jeans', img:['shopco-web-master/src/assets/images/topsellingimg2.png','shopco-web-master/src/assets/images/newarrivalimg2.png','shopco-web-master/src/assets/images/topsellingimg4.png','shopco-web-master/src/assets/images/newarrivalimg3.png'], price:240, old:260 },
+      { id:3, name:'Checkered Shirt', img:['shopco-web-master/src/assets/images/newarrivalimg3.png','shopco-web-master/src/assets/images/newarrivalimg1.png','shopco-web-master/src/assets/images/topsellingimg1.png','shopco-web-master/src/assets/images/topsellingimg3.png'], price:180, old:null },
+      { id:4, name:'Sleeve Striped T‑shirt', img:['shopco-web-master/src/assets/images/newarrivalimg4.png','shopco-web-master/src/assets/images/newarrivalimg1.png','shopco-web-master/src/assets/images/topsellingimg2.png','shopco-web-master/src/assets/images/topsellingimg1.png'], price:130, old:160 },
+      { id:5, name:'Vertical Striped Shirt', img:['shopco-web-master/src/assets/images/topsellingimg1.png','shopco-web-master/src/assets/images/newarrivalimg3.png','shopco-web-master/src/assets/images/newarrivalimg1.png','shopco-web-master/src/assets/images/topsellingimg4.png'], price:186, old:232 },
+      { id:6, name:'Courage Graphic T‑shirt', img:['shopco-web-master/src/assets/images/topsellingimg2.png','shopco-web-master/src/assets/images/newarrivalimg2.png','shopco-web-master/src/assets/images/newarrivalimg4.png','shopco-web-master/src/assets/images/topsellingimg3.png'], price:145, old:null },
+      { id:7, name:'Loose Fit Bermuda Shorts', img:['shopco-web-master/src/assets/images/topsellingimg3.png','shopco-web-master/src/assets/images/newarrivalimg1.png','shopco-web-master/src/assets/images/topsellingimg1.png','shopco-web-master/src/assets/images/newarrivalimg3.png'], price:80, old:null },
+      { id:8, name:'Faded Skinny Jeans', img:['shopco-web-master/src/assets/images/topsellingimg4.png','shopco-web-master/src/assets/images/newarrivalimg2.png','shopco-web-master/src/assets/images/topsellingimg2.png','shopco-web-master/src/assets/images/newarrivalimg4.png'], price:210, old:null }
+    ];
+
+    function getId(){ const p=new URLSearchParams(location.search); return +(p.get('id')||1); }
+    const current = CATALOG[(getId()-1)%CATALOG.length];
+    // hydrate title/price/images
+    document.querySelector('.title').textContent = current.name;
+    document.getElementById('crumbCat').textContent = current.name;
+    document.querySelector('.price-line strong').textContent = `$${current.price}`;
+    const oldEl = document.querySelector('.price-line .old');
+    if(current.old){ oldEl.textContent = `$${current.old}`; } else { oldEl.remove(); document.querySelector('.badge').remove(); }
+    const thumbsBox=document.getElementById('thumbs'); thumbsBox.innerHTML='';
+    current.img.forEach((src,i)=>{ const im=document.createElement('img'); im.src=src; im.dataset.src=src; if(i===0) im.classList.add('active'); thumbsBox.appendChild(im); });
+    document.getElementById('previewImg').src = current.img[0];
+
+    // gallery switching
+    function bindThumbs(){
+      const thumbs=document.querySelectorAll('#thumbs img');
+      const preview=document.getElementById('previewImg');
+      thumbs.forEach(t=>t.onclick=()=>{ thumbs.forEach(i=>i.classList.remove('active')); t.classList.add('active'); preview.src=t.dataset.src; });
+    }
+    bindThumbs();
+    // color & size selection
+    let selectedColor = '#000000';
+    document.querySelectorAll('#colorSel .sw').forEach(sw=>{
+      sw.onclick=()=>{ document.querySelectorAll('#colorSel .sw').forEach(x=>x.classList.remove('active')); sw.classList.add('active'); selectedColor = sw.dataset.color; };
+    });
+    let selectedSize = 'M';
+    document.querySelectorAll('.size').forEach(s=>s.onclick=()=>{ document.querySelectorAll('.size').forEach(x=>x.classList.remove('active')); s.classList.add('active'); selectedSize = s.textContent.trim(); });
+    // quantity
+    let q=1; const qty=document.getElementById('qty');
+    document.getElementById('minus').onclick=()=>{ if(q>1){ q--; qty.textContent=q; } };
+    document.getElementById('plus').onclick=()=>{ q++; qty.textContent=q; };
+    // add to cart (localStorage)
+    document.getElementById('addToCartBtn').onclick=()=>{
+      const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+      const item = { id: current.id, name: current.name, price: current.price, img: current.img[0], color: selectedColor, size: selectedSize, qty: q };
+      const key = (x)=> x.id===item.id && x.color===item.color && x.size===item.size;
+      const found = cart.find(key);
+      if(found){ found.qty += q; } else { cart.push(item); }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      showNotification('Added to cart');
+      const countEl = document.getElementById('cartCount'); if(countEl){ const total = cart.reduce((a,b)=>a+b.qty,0); countEl.textContent = total; }
+    };
+    // tabs
+    document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active'); document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active')); document.getElementById('panel-'+t.dataset.tab).classList.add('active'); });
+    
+    // Update cart count on page load
+    function updateCartCount() {
+      const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+      const total = cart.reduce((sum, item) => sum + item.qty, 0);
+      const countEl = document.getElementById('cartCount');
+      if (countEl) countEl.textContent = total;
+    }
+    updateCartCount();
+    
+    loadFooter();
+  </script>
+</body>
+</html>
+

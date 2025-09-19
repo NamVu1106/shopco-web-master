@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - SHOP.CO</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .cart-wrap{max-width:1140px;margin:24px auto 40px;padding:0 24px}
+    .cart-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    .cart-item{display:flex;align-items:center;gap:14px;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
+    .cart-item img{width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid rgba(0,0,0,.08)}
+    .ci-title{font-weight:600}
+    .ci-meta{font-size:12px;color:rgba(0,0,0,.6)}
+    .ci-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+    .qty{display:inline-flex;align-items:center;border:1px solid rgba(0,0,0,.15);border-radius:999px;overflow:hidden}
+    .qty button{width:28px;height:28px;border:0;background:#fff;cursor:pointer}
+    .qty span{width:28px;text-align:center}
+    .ci-remove{border:0;background:#fff;color:#d00;cursor:pointer}
+    .summary{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:16px;background:#fff}
+    .summary h3{margin:0 0 12px}
+    .sum-row{display:flex;justify-content:space-between;margin:8px 0}
+    .sum-total{font-weight:800;font-size:18px}
+    .btn-dark{width:100%;background:#000;color:#fff;border:none;border-radius:999px;padding:12px 16px;margin-top:12px;cursor:pointer}
+    .empty{color:rgba(0,0,0,.6);text-align:center;padding:40px 0}
+  </style>
+</head>
+<body>
+  <div class="top-banner" id="topBanner">
+    <span class="top-banner-text">Sign up and get 20% off to your first order. <a href="#">Sign Up Now</a></span>
+    <span class="close-btn" onclick="closeBanner()" aria-label="Close banner" role="button">×</span>
+  </div>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="mobile-menu-toggle">
+        <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
+        <div class="logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+      </div>
+      <div class="nav-menu" id="navMenu">
+        <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+        <ul class="nav-links">
+          <li><a href="product.html">Product</a></li>
+          <li><a href="#">On Sale</a></li>
+          <li><a href="#">New Arrivals</a></li>
+          <li><a href="#">Brands</a></li>
+        </ul>
+        <div class="nav-right">
+          <div class="search-container">
+            <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+          </div>
+          <div class="nav-icons">
+            <button class="icon-btn" aria-label="Cart">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="9" cy="20" r="1.6" fill="#000"/>
+                <circle cx="17" cy="20" r="1.6" fill="#000"/>
+              </svg>
+              <span class="cart-count" id="cartCount">0</span>
+            </button>
+            <button class="icon-btn" aria-label="Account">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/>
+                <path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="cart-wrap">
+    <h2>Your Cart</h2>
+    <div class="cart-grid">
+      <div id="cartItems"></div>
+      <aside class="summary" id="summary">
+        <h3>Order Summary</h3>
+        <div class="sum-row"><span>Subtotal</span><span id="subPrice">$0</span></div>
+        <div class="sum-row"><span>Discount (-20%)</span><span id="discount">-$0</span></div>
+        <div class="sum-row"><span>Delivery Fee</span><span id="ship">$15</span></div>
+        <div class="sum-row sum-total"><span>Total</span><span id="total">$0</span></div>
+        <button class="btn-dark">Go to Checkout</button>
+      </aside>
+    </div>
+  </section>
+
+  <section class="newsletter">
+    <div class="container">
+      <div class="newsletter-card">
+        <h3 class="newsletter-title">STAY UPTO DATE ABOUT OUR LATEST OFFERS</h3>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); showNotification('Subscribed successfully!');">
+          <div class="input-wrap">
+            <input type="email" class="newsletter-input" placeholder="Enter your email address" aria-label="Email address" required>
+          </div>
+          <button type="submit" class="newsletter-btn">Subscribe to Newsletter</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="script.js"></script>
+  <script>
+    function renderCart(){
+      let items = JSON.parse(localStorage.getItem('cart')||'[]');
+      // Remove placeholder badge-only entries
+      items = items.filter(it=>!it.__placeholder);
+      localStorage.setItem('cart', JSON.stringify(items));
+      const list = document.getElementById('cartItems');
+      list.innerHTML = '';
+      if(items.length===0){ list.innerHTML = `<div class="empty">Your cart is empty.</div>`; updateSummary(0); updateBadge(0); return; }
+      let subtotal = 0;
+      items.forEach((it,idx)=>{
+        subtotal += it.price*it.qty;
+        const row = document.createElement('div'); row.className='cart-item';
+        row.innerHTML = `
+          <img src="${it.img}" alt="${it.name}">
+          <div>
+            <div class='ci-title'>${it.name}</div>
+            <div class='ci-meta'>Size: ${it.size} • Color: ${it.color}</div>
+            <div class='ci-meta'>$${it.price}</div>
+          </div>
+          <div class='ci-right'>
+            <div class='qty'>
+              <button data-act='minus' data-i='${idx}'>−</button>
+              <span>${it.qty}</span>
+              <button data-act='plus' data-i='${idx}'>＋</button>
+            </div>
+            <button class='ci-remove' data-act='del' data-i='${idx}'>🗑</button>
+          </div>`;
+        list.appendChild(row);
+      });
+      updateSummary(subtotal);
+      updateBadge(items.reduce((a,b)=>a+b.qty,0));
+    }
+    function updateSummary(sub){
+      const discount = Math.round(sub*0.2);
+      const ship = sub>0? 15: 0;
+      const total = sub - discount + ship;
+      document.getElementById('subPrice').textContent = `$${sub}`;
+      document.getElementById('discount').textContent = `-$${discount}`;
+      document.getElementById('ship').textContent = `$${ship}`;
+      document.getElementById('total').textContent = `$${total}`;
+    }
+    function updateBadge(n){ const el=document.getElementById('cartCount'); if(el) el.textContent=n; }
+
+    document.getElementById('cartItems').addEventListener('click', (e)=>{
+      const btn=e.target.closest('button'); if(!btn) return;
+      const items = JSON.parse(localStorage.getItem('cart')||'[]');
+      const i = +btn.dataset.i; if(isNaN(i)) return;
+      if(btn.dataset.act==='plus'){ items[i].qty++; }
+      if(btn.dataset.act==='minus'){ items[i].qty = Math.max(1, items[i].qty-1); }
+      if(btn.dataset.act==='del'){ items.splice(i,1); }
+      localStorage.setItem('cart', JSON.stringify(items));
+      renderCart();
+    });
+
+    loadFooter();
+    renderCart();
+  </script>
+</body>
+</html>
+
