@@ -32,13 +32,15 @@
     .list-head { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
     .sort { border:1px solid rgba(0,0,0,0.15); border-radius:8px; padding:8px 10px; }
     .grid { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:24px; }
-    .card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:12px; overflow:hidden; transition:box-shadow .2s ease, transform .2s ease; }
+    .card { background:#fff; border:1px solid rgba(0,0,0,0.08); border-radius:16px; overflow:hidden; transition:box-shadow .2s ease, transform .2s ease; }
     .card:hover { box-shadow:0 8px 24px rgba(0,0,0,0.08); transform:translateY(-2px); }
-    .card img { width:100%; height:280px; object-fit:cover; display:block; }
+    .img-wrap { background:#F2F0F1; border-radius:16px; padding:0; height:280px; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+    .card img { width:100%; height:100%; object-fit:cover; display:block; border-radius:12px; }
     .card .body { padding:14px; }
-    .card h5 { font-size:16px; margin:0 0 8px; font-weight:600; }
-    .rating { color:#F5B300; font-size:14px; margin-bottom:8px; }
-    .rating .muted{ color:rgba(0,0,0,0.6); font-size:12px; margin-left:6px; }
+    .card h5 { font-size:15px; margin:6px 0 8px; font-weight:600; line-height:1.3; }
+    .rating { display:flex; align-items:center; gap:6px; margin:6px 0 8px; }
+    .stars { color:#FFC107; font-size:14px; letter-spacing:1px; }
+    .rating .muted{ color:rgba(0,0,0,0.6); font-size:12px; }
     .price { display:flex; align-items:center; gap:10px; }
     .price strong { font-size:16px; }
     .price .old { color:rgba(0,0,0,0.5); text-decoration:line-through; }
@@ -46,6 +48,11 @@
     .pagination { display:flex; gap:8px; justify-content:center; margin:24px 0; }
     .pagination .page { border:1px solid rgba(0,0,0,0.15); padding:8px 12px; border-radius:8px; cursor:pointer; }
     .pagination .active { background:#000; color:#fff; border-color:#000; }
+
+    /* Mobile filter toggle bar */
+    .mobile-filter-bar{ display:none; align-items:center; gap:12px; margin:12px 0; }
+    .filter-toggle{ display:inline-flex; align-items:center; gap:8px; border:1px solid rgba(0,0,0,0.15); border-radius:999px; padding:8px 12px; background:#fff; cursor:pointer; font-weight:600; }
+    .filter-toggle svg{ width:18px; height:18px; }
 
     /* Product Page Responsive */
     @media (max-width: 1024px) {
@@ -73,9 +80,7 @@
             gap: 20px;
         }
         
-        .card img {
-            height: 240px;
-        }
+        .img-wrap { height: 240px; padding:0; }
         
         .card h5 {
             font-size: 15px;
@@ -95,17 +100,14 @@
             font-size: 13px;
         }
         
-        .products-wrap {
-            grid-template-columns: 1fr;
-            gap: 16px;
-            margin: 16px 0 24px;
-        }
+        .products-wrap { grid-template-columns: 1fr; gap: 16px; margin: 16px 0 24px; }
         
-        .filters {
-            position: static;
-            padding: 16px;
-            margin-bottom: 16px;
-        }
+        .mobile-filter-bar{ display:flex; }
+        /* turn filters into a drawer */
+        .filters{ display:none; position: fixed; inset: 80px 0 0 0; padding:16px; margin:0; background:#fff; z-index:1003; overflow:auto; border-radius:16px 16px 0 0; box-shadow:0 -8px 24px rgba(0,0,0,0.12); }
+        .filters.open{ display:block; }
+        .filters .close-row{ display:flex; align-items:center; justify-content:space-between; margin:-4px 0 8px; }
+        .filters .btn-close{ border:1px solid rgba(0,0,0,0.15); background:#fff; border-radius:8px; padding:6px 10px; cursor:pointer; }
         
         .filters h4 {
             font-size: 16px;
@@ -121,9 +123,7 @@
             gap: 16px;
         }
         
-        .card img {
-            height: 200px;
-        }
+        .img-wrap { height: 200px; padding:0; }
         
         .card .body {
             padding: 12px;
@@ -151,6 +151,12 @@
             width: 100%;
         }
     }
+    /* Desktop overrides: keep sidebar static and hide mobile-only close row */
+    @media (min-width: 769px) {
+      .filters { position: sticky; top: 100px; display: block !important; box-shadow: none; border-radius:16px; }
+      .filters.open { display: block !important; }
+      .filters .close-row { display: none !important; }
+    }
     
     @media (max-width: 480px) {
         .grid {
@@ -158,9 +164,7 @@
             gap: 12px;
         }
         
-        .card img {
-            height: 180px;
-        }
+        .img-wrap { height: 180px; padding:0; }
         
         .filters {
             padding: 12px;
@@ -183,6 +187,22 @@
       <div class="mobile-menu-toggle">
         <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
         <div class="logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+        <div class="mobile-icons">
+          <button class="icon-btn" aria-label="Search" onclick="toggleMobileSearch()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#000" stroke-width="1.6"/><path d="M20 20L17 17" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Cart" onclick="location.href='cart.html'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.6" fill="#000"/><circle cx="17" cy="20" r="1.6" fill="#000"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Account">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/><path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-search" id="mobileSearch">
+        <div class="search-container">
+          <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+        </div>
       </div>
       <div class="nav-menu" id="navMenu">
         <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
@@ -225,8 +245,15 @@
   </div>
 
   <main class="container">
+    <div class="mobile-filter-bar">
+      <button class="filter-toggle" id="filterToggle" aria-label="Open filters">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6h16M7 12h10M10 18h4" stroke="#000" stroke-width="2" stroke-linecap="round"/></svg>
+        Filters
+      </button>
+    </div>
     <div class="products-wrap">
       <aside class="filters" id="filters">
+        <div class="close-row" style="display:none"></div>
         <div class="filter-header" style="display:flex;justify-content:space-between;align-items:center;">
           <h3 style="margin:0;font-size:18px;">Filters</h3>
         </div>
@@ -383,10 +410,10 @@
       document.getElementById('countLabel').textContent = `${total} Products`;
       grid.innerHTML = pageData.map(p=>`
         <a href="product-detail.html?id=${p.id}" class="card" style="display:block;text-decoration:none;color:inherit">
-          <img src="${p.img}" alt="${p.name}">
+          <div class="img-wrap"><img src="${p.img}" alt="${p.name}"></div>
           <div class="body">
             <h5>${p.name}</h5>
-            <div class="rating">★★★★☆ <span class="muted">3.9/5</span></div>
+            <div class="rating"><span class="stars">★★★☆☆</span><span class="muted">3.9/5</span></div>
             <div class="price">
               <strong>$${p.price}</strong>
               ${p.oldPrice? `<span class='old'>$${p.oldPrice}</span><span class='badge'>-${Math.min(80, Math.floor(100-(p.price/p.oldPrice*100)))}%</span>`:''}
@@ -406,6 +433,18 @@
       const next = document.createElement('button'); next.className='page'; next.textContent='Next'; next.disabled = state.page===pages; next.onclick=()=>{ if(state.page<pages){ state.page++; render(); } };
       pagination.appendChild(next);
     }
+
+  // Mobile filter drawer
+  const drawer = document.getElementById('filters');
+  const toggleBtn = document.getElementById('filterToggle');
+  if(toggleBtn){ toggleBtn.onclick = ()=>{ drawer.classList.add('open'); }; }
+  // add a close button only on mobile
+  const closeRow = drawer.querySelector('.close-row');
+  if(closeRow){
+    closeRow.style.display = 'flex';
+    closeRow.innerHTML = '<div style="font-weight:700;">Filters</div><button class="btn-close" id="filterClose">Close</button>';
+    document.getElementById('filterClose').onclick = ()=> drawer.classList.remove('open');
+  }
 
   // init
   updateCategoryList(); updateSwatches();

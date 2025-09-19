@@ -19,6 +19,35 @@
                 <div class="logo">
                     <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
                 </div>
+                <div class="mobile-icons">
+                    <button class="icon-btn" aria-label="Search" onclick="toggleMobileSearch()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="11" cy="11" r="7" stroke="#000" stroke-width="1.6"/>
+                            <path d="M20 20L17 17" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" aria-label="Cart" onclick="location.href='cart.html'">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <circle cx="9" cy="20" r="1.6" fill="#000"/>
+                            <circle cx="17" cy="20" r="1.6" fill="#000"/>
+                        </svg>
+                    </button>
+                    <button class="icon-btn" aria-label="Account">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/>
+                            <path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile quick search (hidden by default) -->
+            <div class="mobile-search" id="mobileSearch">
+                <div class="search-container">
+                    <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+                </div>
             </div>
 
             <div class="nav-menu" id="navMenu">
@@ -90,11 +119,21 @@
                 </div>
             </div>
             <div class="brands-section" id="brands">
-                <div class="brand">VERSACE</div>
-                <div class="brand">ZARA</div>
-                <div class="brand">GUCCI</div>
-                <div class="brand">PRADA</div>
-                <div class="brand">Calvin Klein</div>
+                <div class="brand brand-logo">
+                    <img src="shopco-web-master/src/assets/images/versace.png" alt="VERSACE" class="brand-img">
+                </div>
+                <div class="brand brand-logo">
+                    <img src="shopco-web-master/src/assets/images/zara-logo-1 1.png" alt="ZARA" class="brand-img">
+                </div>
+                <div class="brand brand-logo">
+                    <img src="shopco-web-master/src/assets/images/gucci-logo-1 1.png" alt="GUCCI" class="brand-img">
+                </div>
+                <div class="brand brand-logo">
+                    <img src="shopco-web-master/src/assets/images/prada-logo-1 1.png" alt="PRADA" class="brand-img">
+                </div>
+                <div class="brand brand-logo">
+                    <img src="shopco-web-master/src/assets/images/calvin klein.png" alt="Calvin Klein" class="brand-img">
+                </div>
             </div>
         </section>
 

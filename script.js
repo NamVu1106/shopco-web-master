@@ -12,6 +12,26 @@ function toggleMobileMenu() {
     }
 }
 
+// Open mobile search quickly (used by mobile header icon)
+function toggleMobileSearch() {
+    const box = document.getElementById('mobileSearch');
+    if (box) {
+        box.classList.toggle('active');
+        const input = box.querySelector('.search-input');
+        if (box.classList.contains('active') && input) {
+            setTimeout(() => input.focus(), 50);
+        }
+    }
+}
+
+// Auto-close mobile search when resizing to desktop
+window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+        const box = document.getElementById('mobileSearch');
+        if (box) box.classList.remove('active');
+    }
+});
+
 // Update cart count (sync from localStorage if not provided)
 function updateCartCount(count) {
     if (typeof count !== 'number') {
@@ -203,13 +223,12 @@ function loadNewArrivals() {
                             <img src="shopco-web-master/src/assets/images/newarrivalimg1.png" alt="T-shirt With Tape Details" style="cursor:pointer;" onclick="location.href='product-detail.html?id=1'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=1'">T-shirt With Tape Details</h3>
+                            <h4 class="product-title">T-shirt With Tape Details</h4>
                             <div class="rating">
                                 <span class="stars">★★★★★</span>
                                 <span>4.5/5</span>
                             </div>
                             <div class="price">$120</div>
-                            <button class="add-to-cart-btn" onclick="addToCart('1')">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-card">
@@ -217,7 +236,7 @@ function loadNewArrivals() {
                             <img src="shopco-web-master/src/assets/images/newarrivalimg2.png" alt="Skinny Fit Jeans" style="cursor:pointer;" onclick="location.href='product-detail.html?id=2'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=2'">Skinny Fit Jeans</h3>
+                            <h4 class="product-title">Skinny Fit Jeans</h4>
                             <div class="rating">
                                 <span class="stars">★★★★☆</span>
                                 <span>3.5/5</span>
@@ -227,7 +246,6 @@ function loadNewArrivals() {
                                 <span class="old-price">$260</span>
                                 <span class="discount">-20%</span>
                             </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('2')">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-card">
@@ -235,13 +253,12 @@ function loadNewArrivals() {
                             <img src="shopco-web-master/src/assets/images/newarrivalimg3.png" alt="Checkered Shirt" style="cursor:pointer;" onclick="location.href='product-detail.html?id=3'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=3'">Checkered Shirt</h3>
+                            <h4 class="product-title">Checkered Shirt</h4>
                             <div class="rating">
                                 <span class="stars">★★★★★</span>
                                 <span>4.5/5</span>
                             </div>
                             <div class="price">$180</div>
-                            <button class="add-to-cart-btn" onclick="addToCart('3')">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-card">
@@ -249,17 +266,16 @@ function loadNewArrivals() {
                             <img src="shopco-web-master/src/assets/images/newarrivalimg4.png" alt="Sleeve Striped T-shirt" style="cursor:pointer;" onclick="location.href='product-detail.html?id=4'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=4'">Sleeve Striped T-shirt</h3>
+                            <h4 class="product-title">Sleeve Striped T-shirt</h4>
                             <div class="rating">
-                                <span class="stars">★★★★★</span>
-                                <span>4.5/5</span>
+                                <span class="stars">★★★☆☆</span>
+                                <span>3.0/5</span>
                             </div>
                             <div class="price">
                                 <span class="current-price">$130</span>
                                 <span class="old-price">$160</span>
                                 <span class="discount">-30%</span>
                             </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('4')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -292,17 +308,16 @@ function loadTopSelling() {
                             <img src="shopco-web-master/src/assets/images/topsellingimg1.png" alt="Vertical Striped Shirt" style="cursor:pointer;" onclick="location.href='product-detail.html?id=5'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=5'">Vertical Striped Shirt</h3>
+                            <h4 class="product-title">Vertical Striped Shirt</h4>
                             <div class="rating">
                                 <span class="stars">★★★★★</span>
-                                <span>5.0/5</span>
+                                <span>4.5/5</span>
                             </div>
                             <div class="price">
                                 <span class="current-price">$212</span>
                                 <span class="old-price">$232</span>
                                 <span class="discount">-20%</span>
                             </div>
-                            <button class="add-to-cart-btn" onclick="addToCart('5')">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-card">
@@ -310,13 +325,12 @@ function loadTopSelling() {
                             <img src="shopco-web-master/src/assets/images/topsellingimg2.png" alt="Courage Graphic T-shirt" style="cursor:pointer;" onclick="location.href='product-detail.html?id=6'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=6'">Courage Graphic T-shirt</h3>
+                            <h4 class="product-title">Courage Graphic T-shirt</h4>
                             <div class="rating">
                                 <span class="stars">★★★★☆</span>
                                 <span>4.0/5</span>
                             </div>
                             <div class="price">$145</div>
-                            <button class="add-to-cart-btn" onclick="addToCart('6')">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-card">
@@ -324,13 +338,12 @@ function loadTopSelling() {
                             <img src="shopco-web-master/src/assets/images/topsellingimg3.png" alt="Loose Fit Bermuda Shorts" style="cursor:pointer;" onclick="location.href='product-detail.html?id=7'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=7'">Loose Fit Bermuda Shorts</h3>
+                            <h4 class="product-title">Loose Fit Bermuda Shorts</h4>
                             <div class="rating">
                                 <span class="stars">★★★☆☆</span>
                                 <span>3.0/5</span>
                             </div>
                             <div class="price">$80</div>
-                            <button class="add-to-cart-btn" onclick="addToCart('7')">Add to Cart</button>
                         </div>
                     </div>
                     <div class="product-card">
@@ -338,13 +351,12 @@ function loadTopSelling() {
                             <img src="shopco-web-master/src/assets/images/topsellingimg4.png" alt="Faded Skinny Jeans" style="cursor:pointer;" onclick="location.href='product-detail.html?id=8'">
                         </div>
                         <div class="product-info">
-                            <h3 style="cursor:pointer" onclick="location.href='product-detail.html?id=8'">Faded Skinny Jeans</h3>
+                            <h4 class="product-title">Faded Skinny Jeans</h4>
                             <div class="rating">
                                 <span class="stars">★★★★★</span>
                                 <span>4.5/5</span>
                             </div>
                             <div class="price">$210</div>
-                            <button class="add-to-cart-btn" onclick="addToCart('8')">Add to Cart</button>
                         </div>
                     </div>
                 </div>
@@ -395,7 +407,7 @@ function loadFooter() {
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h2>SHOP.CO</h2>
+                        <h2>XSHOP</h2>
                         <p>We have clothes that suits your style and which you're proud to wear. From women to men.</p>
                         <div class="social-icons" role="group" aria-label="Social links">
                             <a class="icon" href="#" aria-label="Twitter">
@@ -460,7 +472,7 @@ function loadFooter() {
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>Shop.co © 2000-2023, All Rights Reserved</p>
+                    <p>XShop © 1997-2024, All Rights Reserved</p>
                     <div class="payment-icons" aria-label="Payment methods">
                         <span class="pm">
                             <!-- VISA -->

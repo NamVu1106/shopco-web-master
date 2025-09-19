@@ -16,7 +16,7 @@
     .qty{display:inline-flex;align-items:center;border:1px solid rgba(0,0,0,.15);border-radius:999px;overflow:hidden}
     .qty button{width:28px;height:28px;border:0;background:#fff;cursor:pointer}
     .qty span{width:28px;text-align:center}
-    .ci-remove{border:0;background:#fff;color:#d00;cursor:pointer}
+    .ci-remove{border:1px solid rgba(208,0,0,.3);background:#fff;color:#d00;cursor:pointer;border-radius:8px;padding:6px 10px;font-weight:600}
     .summary{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:16px;background:#fff}
     .summary h3{margin:0 0 12px}
     .sum-row{display:flex;justify-content:space-between;margin:8px 0}
@@ -89,9 +89,9 @@
         <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
         <ul class="nav-links">
           <li><a href="product.html">Product</a></li>
-          <li><a href="#">On Sale</a></li>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Brands</a></li>
+          <li><a href="#top-selling" onclick="scrollToSection('top-selling')">On Sale</a></li>
+          <li><a href="#new-arrivals" onclick="scrollToSection('new-arrivals')">New Arrivals</a></li>
+          <li><a href="#brands" onclick="scrollToSection('brands')">Brands</a></li>
         </ul>
         <div class="nav-right">
           <div class="search-container">

@@ -14,6 +14,13 @@
     .thumbs img:hover{transform:scale(1.05)}
     .thumbs img.active{outline:2px solid #000;outline-offset:2px}
     .preview{border:1px solid rgba(0,0,0,.1);border-radius:12px;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;height:500px;position:relative}
+    .nav-btn{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:#fff;border:1px solid rgba(0,0,0,.15);display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .nav-btn:hover{background:#f5f5f5}
+    .nav-prev{left:10px}
+    .nav-next{right:10px}
+    .thumbs{gap:10px}
+    .thumbs img{border:2px solid transparent}
+    .thumbs img.active{border-color:#000}
     .preview img{width:100%;height:100%;display:block;object-fit:cover}
     .product-info{padding-left:0}
     .title{font-size:32px;font-weight:800;margin:0 0 12px;line-height:1.2}
@@ -84,7 +91,9 @@
     
     @media(max-width:900px){
       .top-grid{grid-template-columns:1fr;gap:24px}
-      .thumbs{flex-direction:row;width:auto;overflow-x:auto;padding-bottom:8px}
+      .gal{display:flex;flex-direction:column}
+      .preview{order:1}
+      .thumbs{order:2;flex-direction:row;width:100%;overflow-x:auto;padding-bottom:8px}
       .thumbs img{min-width:60px;height:60px}
       .preview{height:300px}
       .actions{flex-direction:column;align-items:stretch;gap:12px}
@@ -96,9 +105,11 @@
       .detail-wrap{padding:0 16px;margin:16px auto 32px}
       .crumbs{padding:0 16px;font-size:13px}
       .top-grid{gap:20px}
-      .gal{grid-template-columns:60px 1fr;gap:10px}
-      .thumbs{width:60px;gap:8px}
-      .thumbs img{width:60px;height:60px}
+      /* thumbnails below the main image */
+      .gal{display:flex;flex-direction:column;gap:10px}
+      .preview{order:1; margin:0 auto;}
+      .thumbs{order:2;flex-direction:row;width:100%;gap:8px;overflow-x:auto; justify-content:center;}
+      .thumbs img{min-width:64px;width:64px;height:64px}
       .preview{height:250px}
       .title{font-size:24px;margin-bottom:10px}
       .rating{font-size:14px;margin-bottom:12px}
@@ -139,6 +150,22 @@
       <div class="mobile-menu-toggle">
         <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
         <div class="logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+        <div class="mobile-icons">
+          <button class="icon-btn" aria-label="Search" onclick="toggleMobileSearch()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke="#000" stroke-width="1.6"/><path d="M20 20L17 17" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Cart" onclick="location.href='cart.html'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.6" fill="#000"/><circle cx="17" cy="20" r="1.6" fill="#000"/></svg>
+          </button>
+          <button class="icon-btn" aria-label="Account">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/><path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-search" id="mobileSearch">
+        <div class="search-container">
+          <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+        </div>
       </div>
       <div class="nav-menu" id="navMenu">
         <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
@@ -183,7 +210,11 @@
           <img src="shopco-web-master/src/assets/images/newarrivalimg3.png" data-src="shopco-web-master/src/assets/images/newarrivalimg3.png" alt="thumb3">
           <img src="shopco-web-master/src/assets/images/newarrivalimg4.png" data-src="shopco-web-master/src/assets/images/newarrivalimg4.png" alt="thumb4">
         </div>
-        <div class="preview"><img id="previewImg" src="shopco-web-master/src/assets/images/newarrivalimg1.png" alt="preview"></div>
+        <div class="preview">
+          <button class="nav-btn nav-prev" id="prevBtn" aria-label="Previous">‹</button>
+          <img id="previewImg" src="shopco-web-master/src/assets/images/newarrivalimg1.png" alt="preview">
+          <button class="nav-btn nav-next" id="nextBtn" aria-label="Next">›</button>
+        </div>
       </div>
       <div class="product-info">
         <h1 class="title">T‑shirt With Tape Details</h1>
@@ -294,6 +325,13 @@
       thumbs.forEach(t=>t.onclick=()=>{ thumbs.forEach(i=>i.classList.remove('active')); t.classList.add('active'); preview.src=t.dataset.src; });
     }
     bindThumbs();
+    // nav buttons
+    const prevBtn=document.getElementById('prevBtn');
+    const nextBtn=document.getElementById('nextBtn');
+    function currentIndex(){ const imgs=[...document.querySelectorAll('#thumbs img')]; return imgs.findIndex(i=>i.classList.contains('active')); }
+    function setIndex(idx){ const imgs=[...document.querySelectorAll('#thumbs img')]; const n=imgs.length; const i=(idx+n)%n; imgs.forEach(im=>im.classList.remove('active')); imgs[i].classList.add('active'); document.getElementById('previewImg').src = imgs[i].dataset.src; }
+    if(prevBtn) prevBtn.onclick=()=> setIndex(currentIndex()-1);
+    if(nextBtn) nextBtn.onclick=()=> setIndex(currentIndex()+1);
     // color & size selection
     let selectedColor = '#000000';
     document.querySelectorAll('#colorSel .sw').forEach(sw=>{
