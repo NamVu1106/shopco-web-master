@@ -175,7 +175,13 @@
             font-size: 14px;
         }
     }
-    @media (max-width: 520px){ .grid{ grid-template-columns:1fr;} }
+    /* Small phones: vẫn hiển thị 2 cột như hình yêu cầu */
+    @media (max-width: 520px){
+      .grid{ grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .img-wrap{ height: 170px; }
+      .card h5{ font-size: 13px; }
+      .price strong{ font-size: 15px; }
+    }
   </style>
 </head>
 <body>
