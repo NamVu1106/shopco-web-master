@@ -181,7 +181,19 @@
       .img-wrap{ height: 170px; }
       .card h5{ font-size: 13px; }
       .price strong{ font-size: 15px; }
+      
+      /* Breadcrumb Navigation */
+      .breadcrumb{padding:8px 0}
+      .breadcrumb-nav{font-size:12px}
     }
+    
+    /* Breadcrumb Navigation */
+    .breadcrumb{background:#fff;border-bottom:1px solid rgba(0,0,0,.08);padding:12px 0}
+    .breadcrumb-nav{display:flex;align-items:center;gap:8px;font-size:14px}
+    .breadcrumb-link{color:#000;text-decoration:none;font-weight:500}
+    .breadcrumb-link:hover{text-decoration:underline}
+    .breadcrumb-separator{color:rgba(0,0,0,.6);margin:0 4px}
+    .breadcrumb-current{color:rgba(0,0,0,.6);font-weight:500}
   </style>
 </head>
 <body>
@@ -244,9 +256,20 @@
     </div>
   </nav>
 
+  <!-- Breadcrumb Navigation -->
+  <div class="breadcrumb">
+    <div class="container">
+      <nav class="breadcrumb-nav">
+        <a href="index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-separator">></span>
+        <span class="breadcrumb-current">Products</span>
+      </nav>
+    </div>
+  </div>
+
   <div class="page-hero">
     <div class="container">
-      <div class="breadcrumb">Home / Products</div>
+      <!-- Breadcrumb moved above -->
     </div>
   </div>
 
