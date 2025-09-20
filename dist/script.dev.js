@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   (function initHeroSlider() {
-    var images = ['shopco-web-master/src/assets/images/heroimg.png', 'shopco-web-master/src/assets/images/phong trang.jpg', 'shopco-web-master/src/assets/images/phong trang 2.jpg'];
+    var images = ['shopco-web-master/src/assets/images/heroimg.png', 'shopco-web-master/src/assets/images/ko co phong.png', 'shopco-web-master/src/assets/images/capdoi.png'];
     var hero = document.getElementById('heroImage');
     if (!hero) return;
     var prev = document.getElementById('heroPrev');
