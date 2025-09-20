@@ -32,17 +32,29 @@
     .breadcrumb-separator{color:rgba(0,0,0,.6);margin:0 4px}
     .breadcrumb-current{color:rgba(0,0,0,.6);font-weight:500}
     
+    /* Mobile Icons */
+    .mobile-icons{display:none;align-items:center;gap:8px}
+    .mobile-search{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border:1px solid rgba(0,0,0,.1);z-index:1000;padding:12px}
+    .mobile-search.active{display:block}
+    @media(max-width:768px){
+      .mobile-icons{display:flex}
+      .nav-menu .search-container{display:none}
+    }
+    @media(min-width:769px){
+      .mobile-search{display:none!important}
+    }
+    
     /* Cart Page Responsive */
     @media(max-width:1024px){
-      .cart-wrap{padding:0 20px;margin:20px auto 32px}
-      .cart-grid{grid-template-columns:1fr 320px;gap:20px}
+      .cart-wrap{padding:0 20px;margin:20px auto 32px;min-height:calc(100vh - 200px)}
+      .cart-grid{grid-template-columns:1fr 320px;gap:20px;align-items:start}
       .cart-item{gap:12px;padding:10px}
       .cart-item img{width:50px;height:50px}
       .ci-title{font-size:14px}
       .ci-meta{font-size:11px}
       .qty button{width:24px;height:24px;font-size:12px}
       .qty span{width:24px;font-size:12px}
-      .summary{padding:14px}
+      .summary{padding:14px;position:sticky;top:100px;max-height:calc(100vh - 120px);overflow-y:auto}
       .summary h3{font-size:16px;margin-bottom:10px}
       .sum-row{font-size:14px;margin:6px 0}
       .sum-total{font-size:16px}
@@ -50,8 +62,8 @@
     }
     
     @media(max-width:768px){
-      .cart-wrap{padding:0 16px;margin:16px auto 24px}
-      .cart-grid{grid-template-columns:1fr;gap:16px}
+      .cart-wrap{padding:0 16px;margin:16px auto 24px;min-height:calc(100vh - 150px)}
+      .cart-grid{grid-template-columns:1fr;gap:16px;align-items:start}
       .cart-item{flex-direction:row;align-items:center;gap:12px;padding:12px}
       .cart-item img{width:60px;height:60px;flex-shrink:0}
       .ci-title{font-size:14px;text-align:left}
@@ -60,7 +72,7 @@
       .qty button{width:24px;height:24px;font-size:12px}
       .qty span{width:24px;font-size:12px}
       .ci-remove{font-size:12px;padding:4px 8px}
-      .summary{padding:16px}
+      .summary{padding:16px;position:relative;top:0;max-height:none;overflow-y:visible}
       .summary h3{font-size:18px;margin-bottom:12px;text-align:center}
       .sum-row{font-size:15px;margin:8px 0}
       .sum-total{font-size:18px}
@@ -71,7 +83,8 @@
     }
     
     @media(max-width:480px){
-      .cart-wrap{padding:0 12px;margin:12px auto 20px}
+      .cart-wrap{padding:0 12px;margin:12px auto 20px;min-height:calc(100vh - 120px)}
+      .cart-grid{grid-template-columns:1fr;gap:12px;align-items:start}
       .cart-item{padding:10px;flex-direction:row;align-items:center;gap:10px}
       .cart-item img{width:50px;height:50px;flex-shrink:0}
       .ci-title{font-size:13px;text-align:left}
@@ -80,7 +93,7 @@
       .qty button{width:22px;height:22px;font-size:11px}
       .qty span{width:22px;font-size:11px}
       .ci-remove{font-size:10px;padding:3px 6px}
-      .summary{padding:12px}
+      .summary{padding:12px;position:relative;top:0;max-height:none;overflow-y:visible}
       .summary h3{font-size:16px}
       .sum-row{font-size:13px;margin:6px 0}
       .sum-total{font-size:16px}
@@ -95,7 +108,38 @@
     <div class="nav-container">
       <div class="mobile-menu-toggle">
         <span class="hamburger" onclick="toggleMobileMenu()">☰</span>
-        <div class="logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
+        <div class="logo">
+          <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+        </div>
+        <div class="mobile-icons">
+          <button class="icon-btn" aria-label="Search" onclick="toggleMobileSearch()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="11" cy="11" r="7" stroke="#000" stroke-width="1.6"/>
+              <path d="M20 20L17 17" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+          <button class="icon-btn" aria-label="Cart" onclick="location.href='cart.html'">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M6 6H21L19.2 14.4C19.0824 14.984 18.7846 15.5131 18.352 15.9048C17.9194 16.2966 17.3778 16.5302 16.8 16.57L9 17.1" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 6L5 3H3" stroke="#000" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="9" cy="20" r="1.6" fill="#000"/>
+              <circle cx="17" cy="20" r="1.6" fill="#000"/>
+            </svg>
+          </button>
+          <button class="icon-btn" aria-label="Account">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <circle cx="12" cy="8" r="4" stroke="#000" stroke-width="1.6"/>
+              <path d="M4 20C5.6 16.6667 8.13333 15 12 15C15.8667 15 18.4 16.6667 20 20" stroke="#000" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile quick search (hidden by default) -->
+      <div class="mobile-search" id="mobileSearch">
+        <div class="search-container">
+          <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+        </div>
       </div>
       <div class="nav-menu" id="navMenu">
         <div class="logo desktop-logo"><h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1></div>
