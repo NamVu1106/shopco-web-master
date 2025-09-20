@@ -360,26 +360,62 @@
     if(nextBtn) nextBtn.onclick=()=> setIndex(currentIndex()+1);
     // color & size selection
     let selectedColor = '#000000';
-    document.querySelectorAll('#colorSel .sw').forEach(sw=>{
-      sw.onclick=()=>{ document.querySelectorAll('#colorSel .sw').forEach(x=>x.classList.remove('active')); sw.classList.add('active'); selectedColor = sw.dataset.color; };
-    });
     let selectedSize = 'M';
-    document.querySelectorAll('.size').forEach(s=>s.onclick=()=>{ document.querySelectorAll('.size').forEach(x=>x.classList.remove('active')); s.classList.add('active'); selectedSize = s.textContent.trim(); });
-    // quantity
-    let q=1; const qty=document.getElementById('qty');
-    document.getElementById('minus').onclick=()=>{ if(q>1){ q--; qty.textContent=q; } };
-    document.getElementById('plus').onclick=()=>{ q++; qty.textContent=q; };
-    // add to cart (localStorage)
-    document.getElementById('addToCartBtn').onclick=()=>{
-      const cart = JSON.parse(localStorage.getItem('cart')||'[]');
-      const item = { id: current.id, name: current.name, price: current.price, img: current.img[0], color: selectedColor, size: selectedSize, qty: q };
-      const key = (x)=> x.id===item.id && x.color===item.color && x.size===item.size;
-      const found = cart.find(key);
-      if(found){ found.qty += q; } else { cart.push(item); }
-      localStorage.setItem('cart', JSON.stringify(cart));
-      showNotification('Added to cart');
-      const countEl = document.getElementById('cartCount'); if(countEl){ const total = cart.reduce((a,b)=>a+b.qty,0); countEl.textContent = total; }
+    let q = 1;
+    
+    // Initialize color selection
+    document.querySelectorAll('#colorSel .sw').forEach(sw=>{
+      sw.onclick=()=>{ 
+        document.querySelectorAll('#colorSel .sw').forEach(x=>x.classList.remove('active')); 
+        sw.classList.add('active'); 
+        selectedColor = sw.dataset.color; 
+      };
+    });
+    
+    // Initialize size selection
+    document.querySelectorAll('.size').forEach(s=>{
+      s.onclick=()=>{ 
+        document.querySelectorAll('.size').forEach(x=>x.classList.remove('active')); 
+        s.classList.add('active'); 
+        selectedSize = s.textContent.trim(); 
+      };
+    });
+    
+    // Initialize quantity controls
+    const qtyEl = document.getElementById('qty');
+    const minusBtn = document.getElementById('minus');
+    const plusBtn = document.getElementById('plus');
+    
+    if(minusBtn) minusBtn.onclick=()=>{ 
+      if(q>1){ 
+        q--; 
+        if(qtyEl) qtyEl.textContent=q; 
+      } 
     };
+    
+    if(plusBtn) plusBtn.onclick=()=>{ 
+      q++; 
+      if(qtyEl) qtyEl.textContent=q; 
+    };
+    
+    // Initialize add to cart
+    const addToCartBtn = document.getElementById('addToCartBtn');
+    if(addToCartBtn) {
+      addToCartBtn.onclick=()=>{
+        const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+        const item = { id: current.id, name: current.name, price: current.price, img: current.img[0], color: selectedColor, size: selectedSize, qty: q };
+        const key = (x)=> x.id===item.id && x.color===item.color && x.size===item.size;
+        const found = cart.find(key);
+        if(found){ found.qty += q; } else { cart.push(item); }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        showNotification('Added to cart');
+        const countEl = document.getElementById('cartCount'); 
+        if(countEl){ 
+          const total = cart.reduce((a,b)=>a+b.qty,0); 
+          countEl.textContent = total; 
+        }
+      };
+    }
     // tabs
     document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{ document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); t.classList.add('active'); document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active')); document.getElementById('panel-'+t.dataset.tab).classList.add('active'); });
     
@@ -391,6 +427,45 @@
       if (countEl) countEl.textContent = total;
     }
     updateCartCount();
+    
+    // Show notification function
+    function showNotification(message) {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #000;
+        color: #fff;
+        padding: 12px 20px;
+        border-radius: 8px;
+        font-weight: 500;
+        z-index: 1000;
+        opacity: 0;
+        transform: translateX(100%);
+        transition: all 0.3s ease;
+      `;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      // Animate in
+      setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateX(0)';
+      }, 100);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100%)';
+        setTimeout(() => {
+          if (notification.parentNode) {
+            notification.parentNode.removeChild(notification);
+          }
+        }, 300);
+      }, 3000);
+    }
     
     loadFooter();
   </script>
