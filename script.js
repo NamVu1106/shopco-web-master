@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', function() {
     (function initHeroSlider(){
         const images = [
           'shopco-web-master/src/assets/images/heroimg.png',
-          'shopco-web-master/src/assets/images/phong trang.jpg',
+          'shopco-web-master/src/assets/images/versace banner.jpg',
           'shopco-web-master/src/assets/images/phong trang 2.jpg'
         ];
         const hero = document.getElementById('heroImage');
