@@ -335,14 +335,37 @@
     function getId(){ const p=new URLSearchParams(location.search); return +(p.get('id')||1); }
     const current = CATALOG[(getId()-1)%CATALOG.length];
     // hydrate title/price/images
-    document.querySelector('.title').textContent = current.name;
-    document.getElementById('crumbCat').textContent = current.name;
-    document.querySelector('.price-line strong').textContent = `$${current.price}`;
+    const titleEl = document.querySelector('.title');
+    if(titleEl) titleEl.textContent = current.name;
+    
+    const crumbCatEl = document.getElementById('crumbCat');
+    if(crumbCatEl) crumbCatEl.textContent = current.name;
+    
+    const priceEl = document.querySelector('.price-line strong');
+    if(priceEl) priceEl.textContent = `$${current.price}`;
+    
     const oldEl = document.querySelector('.price-line .old');
-    if(current.old){ oldEl.textContent = `$${current.old}`; } else { oldEl.remove(); document.querySelector('.badge').remove(); }
-    const thumbsBox=document.getElementById('thumbs'); thumbsBox.innerHTML='';
-    current.img.forEach((src,i)=>{ const im=document.createElement('img'); im.src=src; im.dataset.src=src; if(i===0) im.classList.add('active'); thumbsBox.appendChild(im); });
-    document.getElementById('previewImg').src = current.img[0];
+    if(current.old && oldEl){ 
+      oldEl.textContent = `$${current.old}`; 
+    } else { 
+      if(oldEl) oldEl.remove(); 
+      const badgeEl = document.querySelector('.badge');
+      if(badgeEl) badgeEl.remove(); 
+    }
+    const thumbsBox=document.getElementById('thumbs'); 
+    if(thumbsBox) {
+      thumbsBox.innerHTML='';
+      current.img.forEach((src,i)=>{ 
+        const im=document.createElement('img'); 
+        im.src=src; 
+        im.dataset.src=src; 
+        if(i===0) im.classList.add('active'); 
+        thumbsBox.appendChild(im); 
+      });
+    }
+    
+    const previewImg = document.getElementById('previewImg');
+    if(previewImg) previewImg.src = current.img[0];
 
     // gallery switching
     function bindThumbs(){
