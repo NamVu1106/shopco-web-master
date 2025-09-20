@@ -457,7 +457,7 @@ function loadFooter() {
             <div class="container">
                 <div class="footer-content">
                     <div class="footer-section">
-                        <h2>XSHOP</h2>
+                        <h2>SHOP.CO</h2>
                         <p>We have clothes that suits your style and which you're proud to wear. From women to men.</p>
                         <div class="social-icons" role="group" aria-label="Social links">
                             <a class="icon" href="#" aria-label="Twitter">
