@@ -962,7 +962,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .grid-like {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr) !important;
         gap: 16px;
     }
     
@@ -1695,6 +1695,7 @@ h1, h2, h3, h4, h5, h6 {
     background: #fff;
     border-bottom: 1px solid rgba(0,0,0,.08);
     padding: 12px 0;
+    margin-top: 20px;
 }
 
 .breadcrumb-nav {
@@ -1725,9 +1726,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Breadcrumb Responsive */
+@media (max-width: 1024px) {
+    .breadcrumb {
+        margin-top: 15px;
+    }
+}
+
 @media (max-width: 768px) {
     .breadcrumb {
         padding: 10px 0;
+        margin-top: 15px;
     }
     .breadcrumb-nav {
         font-size: 13px;
@@ -1737,6 +1745,7 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 480px) {
     .breadcrumb {
         padding: 8px 0;
+        margin-top: 12px;
     }
     .breadcrumb-nav {
         font-size: 12px;
