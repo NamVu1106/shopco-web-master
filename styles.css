@@ -783,9 +783,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .brand {
     color: #fff;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     text-transform: uppercase;
     line-height: 1;
     font-family: 'Inter', sans-serif;
@@ -893,8 +893,8 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .brand {
-        font-size: 12px;
-        letter-spacing: 0.3px;
+        font-size: 10px;
+        letter-spacing: 0.2px;
         flex: 1;
     }
     
