@@ -6,8 +6,9 @@
   <title>Your Cart - SHOP.CO</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .cart-wrap{max-width:1140px;margin:24px auto 40px;padding:0 24px}
-    .cart-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
+    body{min-height:100vh!important;display:flex!important;flex-direction:column!important}
+    .cart-wrap{max-width:1140px;margin:24px auto 40px;padding:0 24px;min-height:calc(100vh - 200px)!important;flex:1!important}
+    .cart-grid{display:grid;grid-template-columns:1fr 360px;gap:24px;align-items:start}
     .cart-item{display:flex;align-items:center;gap:14px;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
     .cart-item img{width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid rgba(0,0,0,.08)}
     .ci-title{font-weight:600}
@@ -17,7 +18,7 @@
     .qty button{width:28px;height:28px;border:0;background:#fff;cursor:pointer}
     .qty span{width:28px;text-align:center}
     .ci-remove{border:1px solid rgba(208,0,0,.3);background:#fff;color:#d00;cursor:pointer;border-radius:8px;padding:6px 10px;font-weight:600}
-    .summary{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:16px;background:#fff}
+    .summary{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:16px;background:#fff;position:sticky!important;top:100px!important;max-height:calc(100vh - 120px)!important;overflow-y:auto!important;z-index:10!important}
     .summary h3{margin:0 0 12px}
     .sum-row{display:flex;justify-content:space-between;margin:8px 0}
     .sum-total{font-weight:800;font-size:18px}
@@ -72,7 +73,7 @@
       .qty button{width:24px;height:24px;font-size:12px}
       .qty span{width:24px;font-size:12px}
       .ci-remove{font-size:12px;padding:4px 8px}
-      .summary{padding:16px;position:relative;top:0;max-height:none;overflow-y:visible}
+      .summary{padding:16px;position:relative;top:0;max-height:none;overflow-y:visible;margin-top:20px}
       .summary h3{font-size:18px;margin-bottom:12px;text-align:center}
       .sum-row{font-size:15px;margin:8px 0}
       .sum-total{font-size:18px}
@@ -215,7 +216,7 @@
     </div>
   </section>
 
-  <div id="footer"></div>
+  <div id="footer" style="margin-top:auto"></div>
 
   <script src="script.js"></script>
   <script>
