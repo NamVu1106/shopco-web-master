@@ -773,10 +773,10 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #000;
     padding: 24px 40px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
+    gap: 40px;
+    flex-wrap: nowrap;
     scroll-margin-top: 80px;
     min-height: 80px;
 }
@@ -887,9 +887,10 @@ h1, h2, h3, h4, h5, h6 {
     
     .brands-section {
         padding: 16px 20px;
-        justify-content: space-between;
-        gap: 16px;
+        justify-content: center;
+        gap: 20px;
         scroll-margin-top: 60px;
+        flex-wrap: wrap;
     }
     
     .brand {
