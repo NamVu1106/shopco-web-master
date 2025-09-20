@@ -771,11 +771,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .brands-section {
     background-color: #000;
-    padding: 24px 40px;
+    padding: 24px 0;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
-    gap: 20px;
+    gap: 0;
     flex-wrap: nowrap;
     scroll-margin-top: 80px;
     min-height: 80px;
@@ -790,8 +790,7 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 1;
     font-family: 'Inter', sans-serif;
     text-align: center;
-    flex: 0 0 auto;
-    min-width: 90px;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -886,17 +885,17 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .brands-section {
-        padding: 16px 20px;
-        justify-content: space-evenly;
-        gap: 10px;
+        padding: 16px 0;
+        justify-content: space-between;
+        gap: 0;
         scroll-margin-top: 60px;
         flex-wrap: nowrap;
     }
     
     .brand {
         font-size: 12px;
-        min-width: 70px;
         letter-spacing: 0.3px;
+        flex: 1;
     }
     
     .brand-img {
