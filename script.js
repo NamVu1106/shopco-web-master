@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const images = [
           'shopco-web-master/src/assets/images/heroimg.png',
           'shopco-web-master/src/assets/images/ko co phong.png',
-          'shopco-web-master/src/assets/images/capdoi.png'
+          'shopco-web-master/src/assets/images/capdoi2.png'
         ];
         const hero = document.getElementById('heroImage');
         if(!hero) return;
