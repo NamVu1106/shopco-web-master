@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Detail - Bài 1 (HTML + CSS)</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="mobile-menu-toggle">
+                <span class="hamburger">☰</span>
+                <div class="logo">
+                    <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+                </div>
+                <div class="mobile-icons">
+                    <a class="icon-btn" aria-label="Cart" href="cart.html">🛒</a>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <div class="logo desktop-logo">
+                    <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="index.html#top-selling">On Sale</a></li>
+                    <li><a href="index.html#new-arrivals">New Arrivals</a></li>
+                    <li><a href="index.html#brands">Brands</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="breadcrumb">
+            <div class="container">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <a href="product.html">Products</a>
+                <span>›</span>
+                <span>Product Detail</span>
+            </div>
+        </section>
+
+        <section class="detail-wrap">
+            <div class="detail-gallery">
+                <div class="preview">
+                    <img src="../shopco-web-master/src/assets/images/newarrivalimg1.png" alt="Preview">
+                </div>
+                <div class="thumbs">
+                    <img src="../shopco-web-master/src/assets/images/newarrivalimg1.png" alt="thumb1">
+                    <img src="../shopco-web-master/src/assets/images/newarrivalimg2.png" alt="thumb2">
+                    <img src="../shopco-web-master/src/assets/images/newarrivalimg3.png" alt="thumb3">
+                    <img src="../shopco-web-master/src/assets/images/newarrivalimg4.png" alt="thumb4">
+                </div>
+            </div>
+            <div class="detail-info">
+                <h1 class="p-title">Gradient Graphic T-shirt</h1>
+                <div class="p-price">
+                    <span class="new">$145</span>
+                    <span class="old">$200</span>
+                </div>
+                <div class="p-meta">
+                    <p>High-quality cotton T-shirt with gradient graphic.</p>
+                </div>
+                <div class="p-actions">
+                    <a class="btn primary" href="cart.html">Add to Cart</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <h2>You might also like</h2>
+            <div class="grid-like">
+                <a class="card" href="product-detail.html">
+                    <div class="img-wrap"><img src="../shopco-web-master/src/assets/images/topsellingimg1.png" alt="like1"></div>
+                    <div class="card-info"><h3 class="title">Shirt</h3><div class="price"><span class="new">$120</span></div></div>
+                </a>
+                <a class="card" href="product-detail.html">
+                    <div class="img-wrap"><img src="../shopco-web-master/src/assets/images/topsellingimg2.png" alt="like2"></div>
+                    <div class="card-info"><h3 class="title">Jeans</h3><div class="price"><span class="new">$190</span></div></div>
+                </a>
+                <a class="card" href="product-detail.html">
+                    <div class="img-wrap"><img src="../shopco-web-master/src/assets/images/topsellingimg3.png" alt="like3"></div>
+                    <div class="card-info"><h3 class="title">Tee</h3><div class="price"><span class="new">$80</span></div></div>
+                </a>
+                <a class="card" href="product-detail.html">
+                    <div class="img-wrap"><img src="../shopco-web-master/src/assets/images/topsellingimg4.png" alt="like4"></div>
+                    <div class="card-info"><h3 class="title">Hoodie</h3><div class="price"><span class="new">$150</span></div></div>
+                </a>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
+
+

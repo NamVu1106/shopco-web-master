@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart - Bài 1 (HTML + CSS)</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="mobile-menu-toggle">
+                <span class="hamburger">☰</span>
+                <div class="logo">
+                    <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <div class="logo desktop-logo">
+                    <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="product.html">Product</a></li>
+                    <li><a href="index.html#top-selling">On Sale</a></li>
+                    <li><a href="index.html#new-arrivals">New Arrivals</a></li>
+                    <li><a href="index.html#brands">Brands</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="breadcrumb">
+            <div class="container">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>Cart</span>
+            </div>
+        </section>
+
+        <section class="cart-wrap container">
+            <div class="cart">
+                <h2>Your cart</h2>
+                <div class="cart-item">
+                    <div class="ci-thumb"><img src="../shopco-web-master/src/assets/images/newarrivalimg1.png" alt="p1"></div>
+                    <div class="ci-info">
+                        <h3>Gradient Graphic T-shirt</h3>
+                        <p>Size M • Blue</p>
+                    </div>
+                    <div class="ci-qty">1</div>
+                    <div class="ci-price">$145</div>
+                    <div class="ci-remove">×</div>
+                </div>
+            </div>
+            <aside class="summary">
+                <h3>Order Summary</h3>
+                <div class="sum-row"><span>Subtotal</span><span>$145</span></div>
+                <div class="sum-row"><span>Shipping</span><span>$10</span></div>
+                <div class="sum-row"><span>Tax</span><span>$12</span></div>
+                <div class="promo">
+                    <label for="promo">Promo code</label>
+                    <div class="promo-row">
+                        <input id="promo" type="text" placeholder="Enter promo code">
+                        <button type="button" class="apply-btn">Apply</button>
+                    </div>
+                </div>
+                <div class="sum-total"><span>Total</span><span>$167</span></div>
+                <a class="btn primary" href="#">Checkout</a>
+            </aside>
+        </section>
+    </main>
+</body>
+</html>
+
+

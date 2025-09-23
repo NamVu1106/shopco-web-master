@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Bài 1 (HTML + CSS)</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="mobile-menu-toggle">
+                <span class="hamburger">☰</span>
+                <div class="logo">
+                    <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+                </div>
+                <div class="mobile-icons">
+                    <a class="icon-btn" aria-label="Search" href="#filters">🔍</a>
+                    <a class="icon-btn" aria-label="Cart" href="cart.html">🛒</a>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <div class="logo desktop-logo">
+                    <h1><a href="index.html" style="text-decoration:none;color:inherit;">SHOP.CO</a></h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="product.html" aria-current="page">Product</a></li>
+                    <li><a href="index.html#top-selling">On Sale</a></li>
+                    <li><a href="index.html#new-arrivals">New Arrivals</a></li>
+                    <li><a href="index.html#brands">Brands</a></li>
+                </ul>
+                <div class="nav-right">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search for products..." class="search-input" aria-label="Search for products">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="breadcrumb">
+            <div class="container">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span>Products</span>
+            </div>
+        </section>
+
+        <section class="product-wrap">
+            <aside class="sidebar" id="filters">
+                <h3 class="sidebar-title">Filters</h3>
+                <div class="filter-group">
+                    <p class="filter-label">Category</p>
+                    <ul class="filter-list">
+                        <li><label><input type="checkbox"> T-Shirts</label></li>
+                        <li><label><input type="checkbox"> Hoodies</label></li>
+                        <li><label><input type="checkbox"> Jackets</label></li>
+                    </ul>
+                </div>
+                <div class="filter-group">
+                    <p class="filter-label">Size</p>
+                    <div class="sizes">
+                        <span class="size">S</span>
+                        <span class="size">M</span>
+                        <span class="size">L</span>
+                        <span class="size">XL</span>
+                    </div>
+                </div>
+            </aside>
+
+            <section class="product-list">
+                <header class="list-head">
+                    <h2>All Products</h2>
+                </header>
+                <div class="grid products">
+                    <a class="card" href="product-detail.html">
+                        <div class="img-wrap">
+                            <img src="../shopco-web-master/src/assets/images/newarrivalimg1.png" alt="Product 1">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="title">Gradient Graphic T-shirt</h3>
+                            <div class="price">
+                                <span class="new">$145</span>
+                                <span class="old">$200</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="card" href="product-detail.html">
+                        <div class="img-wrap">
+                            <img src="../shopco-web-master/src/assets/images/newarrivalimg2.png" alt="Product 2">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="title">Checkered Shirt</h3>
+                            <div class="price">
+                                <span class="new">$180</span>
+                                <span class="old">$220</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="card" href="product-detail.html">
+                        <div class="img-wrap">
+                            <img src="../shopco-web-master/src/assets/images/newarrivalimg3.png" alt="Product 3">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="title">Skinny Fit Jeans</h3>
+                            <div class="price">
+                                <span class="new">$240</span>
+                            </div>
+                        </div>
+                    </a>
+                    <a class="card" href="product-detail.html">
+                        <div class="img-wrap">
+                            <img src="../shopco-web-master/src/assets/images/newarrivalimg4.png" alt="Product 4">
+                        </div>
+                        <div class="card-info">
+                            <h3 class="title">Sleeve Striped T-shirt</h3>
+                            <div class="price">
+                                <span class="new">$130</span>
+                                <span class="old">$160</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </section>
+    </main>
+</body>
+</html>
+
+
