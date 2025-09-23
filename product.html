@@ -98,6 +98,7 @@
         
         .breadcrumb {
             font-size: 13px;
+            margin-top: 15px;
         }
         
         .products-wrap { grid-template-columns: 1fr; gap: 16px; margin: 16px 0 24px; }
@@ -183,12 +184,12 @@
       .price strong{ font-size: 15px; }
       
       /* Breadcrumb Navigation */
-      .breadcrumb{padding:8px 0}
+      .breadcrumb{padding:8px 0;margin-top:12px}
       .breadcrumb-nav{font-size:12px}
     }
     
     /* Breadcrumb Navigation */
-    .breadcrumb{background:#fff;border-bottom:1px solid rgba(0,0,0,.08);padding:12px 0}
+    .breadcrumb{background:#fff;border-bottom:1px solid rgba(0,0,0,.08);padding:12px 0;margin-top:20px}
     .breadcrumb-nav{display:flex;align-items:center;gap:8px;font-size:14px}
     .breadcrumb-link{color:#000;text-decoration:none;font-weight:500}
     .breadcrumb-link:hover{text-decoration:underline}
@@ -294,8 +295,8 @@
         <div class="filter-group">
           <h4>Price</h4>
           <div class="range-wrap">
-            <input type="range" min="0" max="500" value="0" id="rangeMin" class="range">
-            <input type="range" min="0" max="500" value="500" id="rangeMax" class="range">
+            <input type="range" min="0" max="500" value="0" id="rangeMin" class="range" aria-label="Minimum price">
+            <input type="range" min="0" max="500" value="500" id="rangeMax" class="range" aria-label="Maximum price">
           </div>
           <div class="labels"><span id="minLabel">$0</span><span id="maxLabel">$500</span></div>
         </div>
@@ -313,7 +314,7 @@
           <h2 style="margin:0;">All Products</h2>
           <div style="display:flex; align-items:center; gap:14px; color:rgba(0,0,0,0.6);">
             <span id="countLabel"></span>
-            <select class="sort" id="sortSelect">
+            <select class="sort" id="sortSelect" aria-label="Sort products">
             <option value="newest">Newest</option>
             <option value="popular">Most Popular</option>
             <option value="price_desc">Highest Price</option>

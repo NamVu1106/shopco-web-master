@@ -6,7 +6,7 @@
   <title>Your Cart - SHOP.CO</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    .cart-wrap{max-width:1140px;margin:24px auto 40px;padding:0 24px}
+    .cart-wrap{max-width:1140px;margin:8px auto 24px;padding:0 24px}
     .cart-grid{display:grid;grid-template-columns:1fr 360px;gap:24px}
     .cart-item{display:flex;align-items:center;gap:14px;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:12px;margin-bottom:12px;background:#fff}
     .cart-item img{width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid rgba(0,0,0,.08)}
@@ -17,15 +17,23 @@
     .qty button{width:28px;height:28px;border:0;background:#fff;cursor:pointer}
     .qty span{width:28px;text-align:center}
     .ci-remove{border:1px solid rgba(208,0,0,.3);background:#fff;color:#d00;cursor:pointer;border-radius:8px;padding:6px 10px;font-weight:600}
-    .summary{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:16px;background:#fff}
+    .summary{border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:12px;background:#fff}
     .summary h3{margin:0 0 12px}
     .sum-row{display:flex;justify-content:space-between;margin:8px 0}
     .sum-total{font-weight:800;font-size:18px}
     .btn-dark{width:100%;background:#000;color:#fff;border:none;border-radius:999px;padding:12px 16px;margin-top:12px;cursor:pointer}
-    .empty{color:rgba(0,0,0,.6);text-align:center;padding:40px 0}
+    .empty{color:rgba(0,0,0,.6);text-align:center;padding:24px 0}
+    
+    /* Promo Code Section */
+    .promo-section{margin-top:16px;padding-top:16px;border-top:1px solid rgba(0,0,0,.08)}
+    .promo-input-wrap{display:flex;gap:8px;margin-bottom:12px}
+    .promo-input{flex:1;padding:10px 12px;border:1px solid rgba(0,0,0,.2);border-radius:8px;font-size:14px;background:#f8f9fa}
+    .promo-input:focus{outline:none;border-color:#000;background:#fff}
+    .promo-btn{background:#000;color:#fff;border:none;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .promo-btn:hover{background:#333}
     
     /* Breadcrumb Navigation */
-    .breadcrumb{background:#fff;border-bottom:1px solid rgba(0,0,0,.08);padding:12px 0}
+    .breadcrumb{background:#fff;border-bottom:1px solid rgba(0,0,0,.08);padding:8px 0;margin-top:20px;position:relative;z-index:999}
     .breadcrumb .container{max-width:1140px;margin:0 auto;padding:0 24px}
     .breadcrumb-nav{display:flex;align-items:center;gap:8px;font-size:14px}
     .breadcrumb-link{color:#000;text-decoration:none;font-weight:500}
@@ -35,7 +43,7 @@
     
     /* Cart Page Responsive */
     @media(max-width:1024px){
-      .cart-wrap{padding:0 20px;margin:20px auto 32px}
+      .cart-wrap{padding:0 20px;margin:12px auto 20px}
       .cart-grid{grid-template-columns:1fr 320px;gap:20px}
       .cart-item{gap:12px;padding:10px}
       .cart-item img{width:50px;height:50px}
@@ -48,11 +56,14 @@
       .sum-row{font-size:14px;margin:6px 0}
       .sum-total{font-size:16px}
       .btn-dark{padding:10px 14px;font-size:14px}
+      .promo-input{padding:8px 10px;font-size:13px}
+      .promo-btn{padding:8px 12px;font-size:13px}
+      .breadcrumb{margin-top:15px}
       .breadcrumb .container{padding:0 20px}
     }
     
     @media(max-width:768px){
-      .cart-wrap{padding:0 16px;margin:16px auto 24px}
+      .cart-wrap{padding:0 16px;margin:8px auto 16px}
       .cart-grid{grid-template-columns:1fr;gap:20px}
       .cart-item{flex-direction:row;align-items:center;gap:12px;padding:12px}
       .cart-item img{width:60px;height:60px;flex-shrink:0}
@@ -67,14 +78,14 @@
       .sum-row{font-size:15px;margin:10px 0;padding:4px 0}
       .sum-total{font-size:18px;padding:8px 0;border-top:1px solid rgba(0,0,0,.1)}
       .btn-dark{padding:14px 16px;font-size:15px;margin-top:16px}
-      .empty{padding:40px 0;font-size:16px}
-      .breadcrumb{padding:10px 0}
+      .empty{padding:20px 0;font-size:16px}
+      .breadcrumb{padding:10px 0;margin-top:15px}
       .breadcrumb .container{padding:0 16px}
       .breadcrumb-nav{font-size:13px}
     }
     
     @media(max-width:480px){
-      .cart-wrap{padding:0 12px;margin:12px auto 20px}
+      .cart-wrap{padding:0 12px;margin:6px auto 12px}
       .cart-item{padding:10px;flex-direction:row;align-items:center;gap:10px}
       .cart-item img{width:50px;height:50px;flex-shrink:0}
       .ci-title{font-size:13px;text-align:left}
@@ -88,7 +99,9 @@
       .sum-row{font-size:13px;margin:8px 0;padding:3px 0}
       .sum-total{font-size:16px;padding:6px 0;border-top:1px solid rgba(0,0,0,.1)}
       .btn-dark{padding:12px 14px;font-size:14px;margin-top:12px}
-      .breadcrumb{padding:8px 0}
+      .promo-input{padding:8px 10px;font-size:13px}
+      .promo-btn{padding:8px 12px;font-size:13px}
+      .breadcrumb{padding:8px 0;margin-top:12px}
       .breadcrumb .container{padding:0 12px}
       .breadcrumb-nav{font-size:12px}
     }
@@ -156,6 +169,14 @@
         <div class="sum-row"><span>Discount (-20%)</span><span id="discount">-$0</span></div>
         <div class="sum-row"><span>Delivery Fee</span><span id="ship">$15</span></div>
         <div class="sum-row sum-total"><span>Total</span><span id="total">$0</span></div>
+        
+        <div class="promo-section">
+          <div class="promo-input-wrap">
+            <input type="text" id="promoCode" placeholder="Add promo code" class="promo-input">
+            <button type="button" class="promo-btn" onclick="applyPromoCode()">Apply</button>
+          </div>
+        </div>
+        
         <button class="btn-dark">Go to Checkout</button>
       </aside>
     </div>
@@ -221,6 +242,27 @@
       document.getElementById('total').textContent = `$${total}`;
     }
     function updateBadge(n){ const el=document.getElementById('cartCount'); if(el) el.textContent=n; }
+    
+    function applyPromoCode(){
+      const promoInput = document.getElementById('promoCode');
+      const promoCode = promoInput.value.trim().toUpperCase();
+      
+      if(!promoCode){
+        alert('Please enter a promo code');
+        return;
+      }
+      
+      // Simulate promo code validation
+      const validCodes = ['SAVE10', 'WELCOME20', 'FREESHIP'];
+      
+      if(validCodes.includes(promoCode)){
+        alert(`Promo code "${promoCode}" applied successfully!`);
+        promoInput.value = '';
+        // Here you could add additional discount logic
+      } else {
+        alert('Invalid promo code. Please try again.');
+      }
+    }
 
     document.getElementById('cartItems').addEventListener('click', (e)=>{
       const btn=e.target.closest('button'); if(!btn) return;
